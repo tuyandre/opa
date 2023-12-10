@@ -1,31 +1,32 @@
 <!-- ======= Footer ======= -->
 <footer id="footer">
 
-    <div class="footer-newsletter">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-6">
-                    <h4>Join Our Newsletter</h4>
-                    <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
-                    <form action="" method="post">
-                        <input type="email" required name="email"><input type="submit" value="Subscribe">
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+{{--    <div class="footer-newsletter">--}}
+{{--        <div class="container">--}}
+{{--            <div class="row justify-content-center">--}}
+{{--                <div class="col-lg-6">--}}
+{{--                    <h4>Join Our Newsletter</h4>--}}
+{{--                    <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>--}}
+{{--                    <form action="" method="post">--}}
+{{--                        <input type="email" required name="email"><input type="submit" value="Subscribe">--}}
+{{--                    </form>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
 
     <div class="footer-top">
         <div class="container">
             <div class="row">
 
                 <div class="col-lg-3 col-md-6 footer-contact">
-                    <h3>Opa</h3>
+                    <img src="{{asset($ROOT_FOLDER.'assets/img/logo_black.png')}}" style="height: 100px !important;">
+{{--                    <h3>Opa</h3>--}}
                     <p>
                         Zinia  <br>
                         Kicukiro, Kigali<br>
                         Rwanda <br><br>
-                        <strong>Phone:</strong> +250 781 165 413<br>
+                        <strong>Phone:</strong> +250 781 165 413/+250 785 148 968<br>
                         <strong>Email:</strong> info@opa.rw<br>
                     </p>
                 </div>
