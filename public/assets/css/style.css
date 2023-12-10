@@ -140,7 +140,7 @@ h6 {
 # Navigation Menu
 --------------------------------------------------------------*/
 /**
-* Desktop Navigation 
+* Desktop Navigation
 */
 .navbar {
   padding: 0;
@@ -212,7 +212,7 @@ h6 {
   z-index: 99;
   opacity: 0;
   visibility: hidden;
-  background: #fff;
+  background: #5c636a;
   box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
   transition: 0.3s;
   border-radius: 4px;
@@ -270,7 +270,7 @@ h6 {
 }
 
 /**
-* Mobile Navigation 
+* Mobile Navigation
 */
 .mobile-nav-toggle {
   color: #fff;
@@ -322,7 +322,7 @@ h6 {
   left: 15px;
   padding: 10px 0;
   border-radius: 10px;
-  background-color: #fff;
+  background-color: #5c636a;
   overflow-y: auto;
   transition: 0.3s;
 }
@@ -389,7 +389,11 @@ h6 {
   height: 80vh;
   background: #37517e;
 }
-
+#hero-custom{
+    padding: 130px;
+    width: 100%;
+    background: #37517e;
+}
 #hero .container {
   padding-top: 72px;
 }
