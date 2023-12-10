@@ -51,3 +51,7 @@ Route::group(['prefix' => 'dashboard','middleware' => ['auth']], function () {
     Route::post('/service/update/{id}', [App\Http\Controllers\ServiceController::class, 'update'])->name('admin.service.update');
 
    });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
