@@ -46,6 +46,20 @@ class StudentController extends Controller
             $student->reply_message = $request->reply_message;
             $student->status = $request->status;
             $student->save();
+
+            //send email to student
+            $data = array(
+                'name' => $student->full_name,
+                'email' => $student->email,
+                'message' => $request->reply_message,
+                'status' => $request->status
+            );
+            \Mail::send('emails.reply', $data, function ($message) use ($data) {
+                $message->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
+                $message->to($data['email'], $data['name']);
+                $message->subject('Reply to your registration');
+            });
+
             return redirect()->back()->with('success', 'Reply sent successfully.');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Something went wrong, please try again.');
