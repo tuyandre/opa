@@ -1,4 +1,5 @@
 <?php
+//namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -26,8 +27,10 @@ Route::post('/registration/store', [App\Http\Controllers\FrontRegistrationContro
 //contact us routes
 Route::post('/contact-us/store', [App\Http\Controllers\ContactUsController::class, 'saveContactUs'])->name('frontend.contact-us.store');
 
-Auth::routes();
-
+//Auth::routes();
+// Login Routes
+Route::get('/login', 'App\Http\Controllers\Auth\LoginController@showLoginForm')->name('login');
+Route::post('/login', 'App\Http\Controllers\Auth\LoginController@login');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //admin group routes require authentication
