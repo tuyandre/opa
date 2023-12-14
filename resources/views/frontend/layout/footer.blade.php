@@ -23,7 +23,7 @@
                     <img src="{{asset($ROOT_FOLDER.'assets/img/logo_black.png')}}" style="height: 100px !important;">
 {{--                    <h3>Opa</h3>--}}
                     <p>
-                        Zinia  <br>
+                        Zinia, Near Food Program  <br>
                         Kicukiro, Kigali<br>
                         Rwanda <br><br>
                         <strong>Phone:</strong> +250 781 165 413/+250 785 148 968<br>

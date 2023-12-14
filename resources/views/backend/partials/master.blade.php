@@ -36,7 +36,7 @@
     <!-- inject:css -->
     <link rel="stylesheet" href="{{asset($ROOT_FOLDER.'/backend/assets/css/vertical-layout-light/style.css')}}">
     <!-- endinject -->
-    <link rel="shortcut icon" href="{{asset(url()->to('/').VariableConstants::ROOT_FOLDER.'/assets/img/logo_white.jpg')}}" />
+    <link rel="shortcut icon" href="{{asset(url()->to('/').VariableConstants::ROOT_FOLDER.'/assets/img/sivicon.png')}}" />
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- jQuery -->

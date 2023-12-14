@@ -1,5 +1,5 @@
 <!-- ======= Contact Section ======= -->
-<section id="contact" class="contact" style="background: #0c3c53">
+<section id="contact" class="contact" style="background: #146c77">
     <div class="container" data-aos="fade-up">
         <div class="section-title">
             <h2 style="color: #eb0060">Training Registration</h2>
