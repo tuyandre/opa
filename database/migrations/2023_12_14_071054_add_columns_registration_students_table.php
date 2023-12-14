@@ -23,6 +23,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::table('registration_students', function (Blueprint $table) {
+            $table->dropColumn('reply_status');
+            $table->dropColumn('reply_message');
+            $table->dropColumn('status');
+        });
     }
 };

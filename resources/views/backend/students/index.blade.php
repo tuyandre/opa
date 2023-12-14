@@ -45,7 +45,10 @@
                                     <td>
                                         @if($student->reply_status == 1)
                                             @if($student->status == 'Accepted')
-                                                <span class="badge badge-success">Accepted</span>
+                                                <span class="badge badge-primary">Accepted</span>
+                                            @elseif($student->status == 'Active')
+                                                <span class="badge badge-success">Active</span>
+
                                             @else
                                                 <span class="badge badge-danger">Rejected</span>
                                             @endif
