@@ -1,5 +1,5 @@
 <!-- ======= Pricing Section ======= -->
-<div  class="footer-newsletter" style="background: #37517e">
+<div  class="footer-newsletter" style="background: #146c77">
     <div class="container">
         <div class="row justify-content-center">
             <div class="section-title" style="height: 10vh">
@@ -98,7 +98,7 @@
                         <li><i class="bx bx-check"></i> {{$service->title}}</li>
                         @endforeach
                     </ul>
-                    <a href="{{route('frontend.registration.training',$session->id)}}" class="buy-btn">Get Started</a>
+                    <a href="{{route('frontend.registration.training',$session->id)}}" class="buy-btn">Choose</a>
                 </div>
             </div>
             @endforeach
