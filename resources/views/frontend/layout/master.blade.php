@@ -18,8 +18,8 @@ $ROOT_FOLDER =$main_url.VariableConstants::ROOT_FOLDER;
     <meta content="" name="Office of Professional Auditor">
 
     <!-- Favicons -->
-    <link href="{{asset($ROOT_FOLDER.'assets/img/logo_white.jpg')}}" rel="icon">
-    <link href="{{asset($ROOT_FOLDER.'assets/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
+    <link href="{{asset($ROOT_FOLDER.'assets/img/sivicon.png')}}" rel="icon">
+    <link href="{{asset($ROOT_FOLDER.'assets/img/sivicon.png')}}" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -143,6 +143,66 @@ $ROOT_FOLDER =$main_url.VariableConstants::ROOT_FOLDER;
                     required: "Please enter your message",
                     minlength: "Your message must be at least 3 characters long",
                     maxlength: "Your message must be at least 50 characters long",
+                },
+            },
+            submitHandler: function (form) {
+                form.submit();
+            },
+        });
+        //validation training_form
+        $("#training_form").validate({
+            rules: {
+                name: {
+                    required: true,
+                    minlength: 5,
+                    maxlength: 50,
+                },
+                email: {
+                    required: true,
+                    email: true,
+                    minlength: 3,
+                    maxlength: 50,
+                },
+                company_tin: {
+                    minlength: 9,
+                    maxlength: 9,
+                },
+                telephone: {
+                    required: true,
+                    minlength: 10,
+                    maxlength: 10,
+                },
+                comment: {
+                    required: true,
+                    minlength: 10,
+                    maxlength: 500,
+                },
+            },
+            messages: {
+                name: {
+                    required: "Please enter your name",
+                    minlength: "Your name must be at least 3 characters long",
+                    maxlength: "Your name must be at least 50 characters long",
+                },
+                email: {
+                    required: "Please enter your email",
+                    email: "Please enter a valid email address",
+                    minlength: "Your email must be at least 3 characters long",
+                    maxlength: "Your email must be at least 50 characters long",
+                },
+                telephone: {
+                    required: "Please enter your telephone",
+                    minlength: "Your telephone must be at least 10 characters long",
+                    maxlength: "Your telephone must be at least 10 characters long",
+                },
+                company_tin: {
+                    minlength: "Your company tin must be at least 9 characters long",
+                    maxlength: "Your company tin must be at least 9 characters long",
+                },
+                comment: {
+                    required: "Please enter your comment",
+                    minlength: "Your comment must be at least 10 characters long",
+                    maxlength: "Your comment must be at least 500 characters long",
                 },
             },
             submitHandler: function (form) {

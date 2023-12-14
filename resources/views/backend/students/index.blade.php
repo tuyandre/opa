@@ -20,10 +20,12 @@
                             <thead>
                             <tr>
                                 <th>Training Session</th>
+                                <th>Session Fees</th>
                                 <th>Full Name</th>
                                 <th>Telephone</th>
                                 <th>Email</th>
                                 <th>Registration Date</th>
+                                <th>Status</th>
                                 <th>Company Tin</th>
                                 <th>Company Name</th>
                                 <th>Payment Agreement</th>
@@ -35,10 +37,22 @@
                             @foreach($students as $student)
                                 <tr>
                                     <td>{{$student->session->session_title}}</td>
+                                    <td>{{number_format($student->session->price) }}</td>
                                     <td>{{$student->full_name}}</td>
                                     <td>{{$student->telephone}}</td>
                                     <td>{{$student->email}}</td>
                                     <td>{{$student->created_at}}</td>
+                                    <td>
+                                        @if($student->reply_status == 1)
+                                            @if($student->status == 'Accepted')
+                                                <span class="badge badge-success">Accepted</span>
+                                            @else
+                                                <span class="badge badge-danger">Rejected</span>
+                                            @endif
+                                        @else
+                                            <span class="badge badge-warning">Pending</span>
+                                        @endif
+                                    </td>
                                     <td>{{$student->company_tin}}</td>
                                     <td>{{$student->company_name}}</td>
                                     <td>
@@ -56,8 +70,35 @@
                                         @endif
                                     </td>
                                     <td>
-{{--                                        <a href="{{route('students.show', $student->id)}}" class="btn btn-primary btn-sm">View</a>--}}
-{{--                                        <a href="{{route('students.destroy', $student->id)}}" class="btn btn-danger btn-sm">Delete</a>--}}
+                                        <div class="dropdown">
+                                            <button class="btn btn-2x btn-primary btn-sm dropdown-toggle" style="height: 40px !important; margin-bottom: 0 !important;" type="button"
+                                                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                                    aria-expanded="false">
+                                                Action
+                                            </button>
+                                            <div class="dropdown-menu rounded" aria-labelledby="dropdownMenuButton">
+                                                @if($student->reply_status == 0)
+                                                    <a class="dropdown-item reply_btn" data-student="{{$student->id}}" href="">
+                                                        <span class="badge badge-primary">Reply</span>
+                                                    </a>
+                                                @endif
+                                                @if($student->is_paid == 0)
+                                                    <a class="dropdown-item btn-success  paid_btn"
+                                                       href="{{route('admin.student.change_payment_status', $student->id)}}">
+                                                        <span class="badge badge-success">Paid</span>
+                                                    </a>
+                                                        <a class="dropdown-item  delete_btn"
+                                                           href="{{route('admin.student.delete', $student->id)}}">
+                                                            <span class="badge badge-danger">Delete</span>
+                                                        </a>
+                                                @endif
+                                                    <a class="dropdown-item view_btn"
+                                                       href="#">
+                                                        <span class="badge badge-primary">View</span>
+                                                    </a>
+
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
@@ -68,4 +109,124 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="replyModal" data-backdrop="static" tabindex="-1" role="dialog"
+         aria-labelledby="staticBackdrop" aria-hidden="true">
+        <div class="modal-dialog">
+            <form action="{{route('admin.student.reply')}}" method="post" id="submissionForm" class="reply_form" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Reply Student</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i aria-hidden="true" class="ki ki-close"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="status">Decision</label>
+                            <select name="status" id="status" class="form-control" required>
+                                <option value="">Select Decision</option>
+                                <option value="Accepted">Accepted</option>
+                                <option value="Accepted">Rejected</option>
+                            </select>
+                            <input type="hidden" name="student_id" id="student_id" >
+                        </div>
+                        <div class="form-group">
+                            <label for="reply_message">Reply Message</label>
+                            <textarea type="text"  name="reply_message" id="reply_message" class="form-control" required > </textarea>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <!-- /.modal-content -->
+        </div>
+    </div>
+
+
+@endsection
+@section('scripts')
+    <script type="text/javascript" src="{{ asset($ROOT_FOLDER.'vendor/jsvalidation/js/jsvalidation.min.js')}}"></script>
+    <script type="text/javascript" src="{{ url($ROOT_FOLDER.'vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+    <script>
+        $(document).ready(function () {
+            //delete_btn
+            $(document).on('click', '.delete_btn', function (e) {
+                e.preventDefault();
+                var url = $(this).attr('href');
+                swal.fire({
+                    title: "Are you sure?",
+                    text: "Once deleted, you will not be able to recover this student!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Yes, delete it!",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = url;
+                    }
+                });
+            });
+            //paid_btn
+            $(document).on('click', '.paid_btn', function (e) {
+                e.preventDefault();
+                var url = $(this).attr('href');
+                swal.fire({
+                    title: "Are you sure?",
+                    text: "Once paid, you will not be able to recover this Payment!",
+                    icon: "success",
+                    showCancelButton: true,
+                    confirmButtonColor: "green",
+                    confirmButtonText: "Yes, paid it!",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = url;
+                    }
+                });
+            });
+//reply_btn
+            $(document).on('click', '.reply_btn', function (e) {
+                e.preventDefault();
+                var student_id = $(this).data('student');
+                $('#student_id').val(student_id);
+                $('#replyModal').modal('show');
+            });
+            //validation
+            $("#reply_form").validate({
+                rules: {
+                    reply_message: {
+                        required: true,
+                        minlength: 5,
+                        maxlength: 500,
+                    },
+                    reply_status: {
+                        required: true,
+                    },
+                },
+                messages: {
+                    reply_message: {
+                        required: "Please enter your reply message",
+                        minlength: "Your reply message must be at least 10 characters long",
+                        maxlength: "Your reply message must be at least 500 characters long",
+                    },
+                    reply_status: {
+                        required: "Please select your decision",
+                    },
+                },
+                submitHandler: function (form) {
+                    form.submit();
+                }
+            });
+
+        });
+
+
+    </script>
+
 @endsection

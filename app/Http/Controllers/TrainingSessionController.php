@@ -54,4 +54,37 @@ class TrainingSessionController extends Controller
         $training_session->save();
         return redirect()->back()->with('success', 'Training session added successfully.');
     }
+    //delete training session
+    public function destroy($id)
+    {
+        try {
+            $training_session = TrainingSession::find($id);
+
+            //check if session has students
+            if($training_session->students->count() > 0){
+                return redirect()->back()->with('error', 'Training session can not be deleted.Because it has students.');
+            }else{
+                $training_session->delete();
+                return redirect()->back()->with('success', 'Training session deleted successfully.');
+            }
+        }catch (\Exception $exception) {
+            return redirect()->back()->with('error', 'Training session can not be deleted.Because it has students.');
+        }
+
+    }
+    //update status
+    public function updateStatus($id, $status)
+    {
+        $training_session = TrainingSession::find($id);
+        $training_session->status = $status;
+        $training_session->save();
+        return redirect()->back()->with('success', 'Training session status updated successfully.');
+    }
+    //get students by session id
+    public function getStudentsBySessionId($id)
+    {
+        $training_session = TrainingSession::find($id);
+        $students = $training_session->students;
+        return view('backend.settings.sessions.session_students', compact('students', 'training_session'));
+    }
 }

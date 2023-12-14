@@ -42,7 +42,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="company_tin">Company Tin</label>
-                            <input type="text" class="form-control" name="company_tin" id="company_tin" >
+                            <input type="number" class="form-control" name="company_tin" id="company_tin" minlength="9" maxlength="9">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="service">Select service/Training do you wish to have *</label>
