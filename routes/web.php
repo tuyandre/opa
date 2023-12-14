@@ -53,11 +53,18 @@ Route::group(['prefix' => 'dashboard','middleware' => ['auth']], function () {
     //training session routes
     Route::get('/training-session', [App\Http\Controllers\TrainingSessionController::class, 'index'])->name('admin.training.session');
     Route::post('/training-session/store', [App\Http\Controllers\TrainingSessionController::class, 'store'])->name('admin.training.session.store');
+    Route::get('/training-session/delete/{id}', [App\Http\Controllers\TrainingSessionController::class, 'destroy'])->name('admin.training.session.delete');
+    Route::get('/training-session/change_status/{id}/{status}', [App\Http\Controllers\TrainingSessionController::class, 'updateStatus'])->name('admin.training.session.change_status');
+    //get students by session id
+    Route::get('/training-session/students/{id}', [App\Http\Controllers\TrainingSessionController::class, 'getStudentsBySessionId'])->name('admin.training.session.students');
 
 
 
     //student routes
     Route::get('/students', [App\Http\Controllers\StudentController::class, 'index'])->name('admin.student.index');
+    Route::get('/student/delete/{id}', [App\Http\Controllers\StudentController::class, 'destroy'])->name('admin.student.delete');
+    Route::get('/student/change_payment_status/{id}', [App\Http\Controllers\StudentController::class, 'changePaymentStatus'])->name('admin.student.change_payment_status');
+    Route::post('/student/reply', [App\Http\Controllers\StudentController::class, 'replyToStudent'])->name('admin.student.reply');
 
 
     //service routes

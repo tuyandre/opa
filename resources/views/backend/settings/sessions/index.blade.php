@@ -46,7 +46,9 @@
                                         <td>{{ $training_session->start_time }}</td>
                                         <td>{{ $training_session->end_time }}</td>
                                         <td>
-                                            <span class="badge badge-primary rounded">{{ $training_session->students->count() }}</span>
+                                            <a href="{{route('admin.training.session.students', $training_session->id)}}">
+                                                <span class="badge badge-primary rounded">{{ $training_session->students->count() }}</span>
+                                            </a>
                                         </td>
                                         <td>
                                             @if($training_session->status == "Active")
@@ -56,8 +58,25 @@
                                             @endif
                                         </td>
                                         <td>
-{{--                                            <a href="{{ route('backend.training_sessions.edit', $training_session->id) }}" class="btn btn-primary">Edit</a>--}}
-{{--                                            <a href="{{ route('backend.training_sessions.delete', $training_session->id) }}" class="btn btn-danger">Delete</a>--}}
+                                            <div class="dropdown">
+                                                <button class="btn btn-2x btn-primary btn-sm dropdown-toggle" type="button"
+                                                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                                        aria-expanded="false">
+                                                    Action
+                                                </button>
+                                                <div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-item" href="{{route('admin.training.session.students', $training_session->id)}}">Students</a>
+                                                    @if($training_session->status == "Active")
+                                                        <a class="dropdown-item close_btn" href="{{route('admin.training.session.change_status', [$training_session->id, 'Inactive'])}}">Close</a>
+                                                    @else
+                                                        <a class="dropdown-item close_btn" href="{{route('admin.training.session.change_status', [$training_session->id, 'Active'])}}">Activate</a>
+                                                    @endif
+                                                    <a class="dropdown-item delete_btn" href="{{route('admin.training.session.delete', $training_session->id)}}">Delete</a>
+
+
+
+                                                </div>
+                                                </div>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -223,6 +242,43 @@
                 submitHandler: function (form) {
                     form.submit();
                 },
+            });
+            //close btn
+            $(".close_btn").click(function (e) {
+                e.preventDefault();
+                var url = $(this).attr('href');
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You want to close this session!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Yes, close it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = url;
+                    }
+                })
+            });
+
+            //delete btn
+            $(".delete_btn").click(function (e) {
+                e.preventDefault();
+                var url = $(this).attr('href');
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You want to delete this session!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = url;
+                    }
+                })
             });
 
 

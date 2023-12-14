@@ -14,9 +14,9 @@
     </div>
     <div class="row">
 
-        <div class="col-md-6 grid-margin transparent">
+        <div class="col-md-6 grid-margin ">
             <div class="row">
-                <div class="col-md-6 mb-4 stretch-card transparent">
+                <div class="col-md-6 mb-4 stretch-card second">
                     <div class="card card-tale">
                         <div class="card-body">
                             <p class="mb-4">Training Session</p>
