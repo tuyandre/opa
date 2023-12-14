@@ -48,6 +48,17 @@
                             knowledge, and competencies of individuals or groups.
                             These services are offered by training providers, educational institutions,
                             and organizations to address specific learning needs and professional development goals.</p>
+                        Training Courses:
+                        <?php
+                        $services = \App\Models\TrainingService::where('is_active', true)->get();
+                            ?>
+
+                        <ul type="none">
+                            @foreach($services as $service)
+                                <li><i class="ri-check-double-line"></i> {{$service->title}}</li>
+                            @endforeach
+
+                        </ul>
                     </div>
                 </div>
             <div class="col-xl-4 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="400">

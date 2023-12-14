@@ -615,7 +615,10 @@ section {
 .about .content ul li+li {
   margin-top: 10px;
 }
-
+.ri-check-double-line {
+    font-size: 20px;
+    color: #e50031;
+}
 .about .content ul i {
   position: absolute;
   left: 0;

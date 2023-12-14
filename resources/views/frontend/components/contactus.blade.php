@@ -14,7 +14,7 @@
                     <div class="address">
                         <i class="bi bi-geo-alt"></i>
                         <h4>Location:</h4>
-                        <p>Zinia, Near Food Program, Kicukiro- Kigali, Rwanda</p>
+                        <p>Ziniya, Near World Food Program, Kicukiro- Kigali, Rwanda</p>
                     </div>
 
                     <div class="email">
