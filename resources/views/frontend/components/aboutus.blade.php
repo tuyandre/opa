@@ -12,8 +12,8 @@
                     <h3>Our Vision</h3>
                 </div>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                    magna aliqua.
+                    To be a reliable audit firm for SMEs with creative and innovative thoughts.
+
                 </p>
             </div>
             <div class="col-lg-4 pt-4 pt-lg-0">
@@ -21,9 +21,7 @@
                     <h3>Our Mission</h3>
                 </div>
                 <p>
-                    Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                    velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                    culpa qui officia deserunt mollit anim id est laborum.
+                    Creative minds, with innovative solutions. We solve the real-world problems with creativity, innovation, integrity for our clients, the surrounding community.
                 </p>
             </div>
             <div class="col-lg-4">
@@ -31,13 +29,13 @@
                     <h3>Core Values</h3>
                 </div>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                    magna aliqua.
+                    <strong>Our values define who we are, what we stand for, and how we behave</strong>
                 </p>
                 <ul>
-                    <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat</li>
-                    <li><i class="ri-check-double-line"></i> Duis aute irure dolor in reprehenderit in voluptate velit</li>
-                    <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat</li>
+                    <li><i class="ri-check-double-line"></i> Teamwork</li>
+                    <li><i class="ri-check-double-line"></i> Reliability</li>
+                    <li><i class="ri-check-double-line"></i> Unique</li>
+                    <li><i class="ri-check-double-line"></i> Excellent</li>
                 </ul>
             </div>
         </div>
