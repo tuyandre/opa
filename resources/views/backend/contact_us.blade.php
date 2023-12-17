@@ -30,8 +30,19 @@
                                     <td>{{$contact->subject}}</td>
                                     <td>{{$contact->created_at}}</td>
                                     <td>
-{{--                                        <a href="{{route('contact_us.show', $contact->id)}}" class="btn btn-primary btn-sm">View</a>--}}
-{{--                                        <a href="{{route('contact_us.destroy', $contact->id)}}" class="btn btn-danger btn-sm">Delete</a>--}}
+                                        <div class="dropdown">
+                                            <button class="btn btn-2x btn-primary btn-sm dropdown-toggle action-dropdown" type="button"
+                                                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                                    aria-expanded="false">
+                                                Action
+                                            </button>
+                                            <div class="dropdown-menu rounded" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-item delete_btn"  href="{{route('admin.contact.us.delete', $contact->id)}}">
+                                                        <span class="badge badge-danger">Delete</span>
+                                                    </a>
+
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
@@ -44,4 +55,33 @@
     </div>
 
 
+@endsection
+@section('scripts')
+    <script>
+        $(document).ready(function () {
+            //delete_btn
+            $(document).on('click', '.delete_btn', function (e) {
+                e.preventDefault();
+                var url = $(this).attr('href');
+                swal.fire({
+                    title: "Are you sure?",
+                    text: "Once deleted, you will not be able to recover this Contact Us!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Yes, delete it!",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = url;
+                    }
+                });
+            });
+
+
+        });
+
+
+
+
+    </script>
 @endsection

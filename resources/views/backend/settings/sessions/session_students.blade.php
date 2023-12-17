@@ -71,7 +71,7 @@
                                     </td>
                                     <td>
                                         <div class="dropdown">
-                                            <button class="btn btn-2x btn-primary btn-sm dropdown-toggle" style="height: 40px !important; margin-bottom: 0 !important;" type="button"
+                                            <button class="btn btn-2x btn-primary btn-sm dropdown-toggle action-dropdown"  type="button"
                                                     id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                                                     aria-expanded="false">
                                                 Action

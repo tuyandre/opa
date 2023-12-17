@@ -69,12 +69,12 @@
                         steps to ensure that the software is correctly set up and configured on a
                         computer or server.<br>
                     Like :</p>
-                    <ul>
-                        <li>QuickBooks</li>
-                        <li>Sage</li>
-                        <li>Tally</li>
-                        <li>Wave Financial</li>
-                        <li>SAP Business One</li>
+                    <ul type="none">
+                        <li><i class="ri-check-double-line"></i> QuickBooks</li>
+                        <li><i class="ri-check-double-line"></i>Sage</li>
+                        <li><i class="ri-check-double-line"></i>Tally</li>
+                        <li><i class="ri-check-double-line"></i>Wave Financial</li>
+                        <li><i class="ri-check-double-line"></i>SAP Business One</li>
                     </ul>
                 </div>
             </div>

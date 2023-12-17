@@ -48,6 +48,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //admin group routes require authentication
 Route::group(['prefix' => 'dashboard','middleware' => ['auth']], function () {
     Route::get('/contact_us', [App\Http\Controllers\ContactUsController::class, 'index'])->name('admin.contact.us');
+    //delete contact us
+    Route::get('/contact_us/delete/{id}', [App\Http\Controllers\ContactUsController::class, 'destroy'])->name('admin.contact.us.delete');
 
 
     //training session routes

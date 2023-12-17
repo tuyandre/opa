@@ -36,9 +36,12 @@ class ContactUsController extends Controller
     public function destroy($id)
     {
         $contact_us = ContactUs::find($id);
+      if ($contact_us) {
         $contact_us->delete();
-
         return redirect()->route('contact_us.index')->with('success', 'Contact us deleted successfully.');
+      } else {
+        return redirect()->back()->with('error', 'Contact us not found.');
+      }
     }
 
     public function destroyAll()
