@@ -35,7 +35,7 @@
                     <li><i class="ri-check-double-line"></i> Teamwork</li>
                     <li><i class="ri-check-double-line"></i> Reliability</li>
                     <li><i class="ri-check-double-line"></i> Unique</li>
-                    <li><i class="ri-check-double-line"></i> Excellent</li>
+                    <li><i class="ri-check-double-line"></i> Excellency</li>
                 </ul>
             </div>
         </div>

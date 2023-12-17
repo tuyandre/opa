@@ -55,7 +55,7 @@
 
 
                     <div class="form-group col-md-6">
-                        <label for="agreement"> <strong>I understand that I will have to pay RWF {{number_format($session->price)}} before enrollment for the training of my choice and to negotiation with OPA about the price for consultancy services. </strong> </label>
+                        <label for="agreement"> <strong>I understand that I will have to pay RWF {{number_format($session->price)}} before enrollment for the training of my choice and to negotiate with OPA about the price for consultancy services. </strong> </label>
                         <input type="checkbox" value="1" name="agreement" id="agreement">
                     </div>
                     <div class="form-group col-md-6">

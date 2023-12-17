@@ -21,7 +21,7 @@
 {{--            </li>--}}
             <li class="nav-item">
                 <a class="nav-link" href="{{route('admin.service.index')}}">
-                    <i class="icon-gear menu-icon"></i>
+                    <i class="icon-layout menu-icon"></i>
                     <span class="menu-title">Services</span>
                 </a>
             </li>
