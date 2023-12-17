@@ -843,7 +843,7 @@ section {
   width: 1px;
   height: 10px;
   transition: 0.9s;
-  background-color: #4668a2;
+  background-color: black;
 }
 
 /*--------------------------------------------------------------
@@ -991,7 +991,7 @@ section {
   z-index: 3;
   right: 15px;
   transition: all 0.3s;
-  background: rgba(55, 81, 126, 0.8);
+  /*background: rgba(55, 81, 126, 0.8);*/
   padding: 10px 15px;
 }
 
@@ -1446,7 +1446,14 @@ section {
   padding: 0 0 10px 60px;
   margin-bottom: 20px;
   font-size: 14px;
-  color: #6182ba;
+  color: black;
+}
+.btn-contactus{
+    background: #146c77;
+    border-radius: 10px;
+}
+.btn-contactus:hover{
+    background: #e50031;
 }
 
 .contact .info .email p {
@@ -1480,7 +1487,7 @@ section {
 .contact .info .email:hover i,
 .contact .info .address:hover i,
 .contact .info .phone:hover i {
-  background: #146c77;
+  background: #e50031;
   color: #fff;
 }
 
@@ -1636,7 +1643,7 @@ section {
 .breadcrumbs ol li+li::before {
   display: inline-block;
   padding-right: 10px;
-  color: #4668a2;
+  color: black;
   content: "/";
 }
 
