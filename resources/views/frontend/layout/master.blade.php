@@ -174,7 +174,7 @@ $ROOT_FOLDER =$main_url.VariableConstants::ROOT_FOLDER;
                 },
                 comment: {
                     required: true,
-                    minlength: 10,
+                    minlength: 2,
                     maxlength: 500,
                 },
             },
