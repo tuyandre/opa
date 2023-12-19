@@ -98,7 +98,7 @@
                         <li><i class="bx bx-check"></i> {{$service->title}}</li>
                         @endforeach
                     </ul>
-                    <a href="{{route('frontend.registration.training',$session->id)}}" class="buy-btn">Choose</a>
+                    <a href="{{route('frontend.registration.training',$session->id)}}" class="buy-btn btn-contactus">Choose</a>
                 </div>
             </div>
             @endforeach

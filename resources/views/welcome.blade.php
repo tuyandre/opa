@@ -11,10 +11,14 @@
 
 
     <!-- ======= Services Section ======= -->
-    @include('frontend.components.services')
+{{--    @include('frontend.components.services')--}}
     <!-- End Services Section -->
     <!-- End Contact Section -->
 
-    @include('frontend.components.contactus')
+{{--    @include('frontend.components.contactus')--}}
+
+    <!-- ======= Clients Section ======= -->
+    @include('frontend.components.partner')
+    <!-- End Cliens Section -->
 
 @endsection

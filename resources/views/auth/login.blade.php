@@ -3,8 +3,10 @@
 {{--<div style="margin: 150px;background: #102500">--}}
 
 <section id="hero-custom">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
+
+</section>
+        <div class="row justify-content-center" style="background: #146c70;padding-bottom: 80px">
+            <div class="col-md-8 col-sm-12">
                 <div class="card">
                     <div class="card-header">{{ __('Login') }}</div>
 
@@ -69,8 +71,11 @@
                     </div>
                 </div>
             </div>
+
+
         </div>
-    </section><!-- End Hero -->
+    <!-- End Hero -->
 
 {{--</div>--}}
+
 @endsection

@@ -20,6 +20,11 @@ Route::get('/', function () {
 });
 //pricing page
 Route::get('/pricing', [App\Http\Controllers\FrontRegistrationController::class, 'pricing'])->name('frontend.pricing');
+//services page
+Route::get('/services', [App\Http\Controllers\FrontRegistrationController::class, 'frontServices'])->name('frontend.services');
+Route::get('/contact_us', [App\Http\Controllers\FrontRegistrationController::class, 'frontContactUs'])->name('frontend.contact.us');
+Route::get('/about_us', [App\Http\Controllers\FrontRegistrationController::class, 'frontAboutUs'])->name('frontend.about.us');
+
 //registration page
 Route::get('/registration/{session_id}', [App\Http\Controllers\FrontRegistrationController::class, 'registration_training'])->name('frontend.registration.training');
 //store registration form data
