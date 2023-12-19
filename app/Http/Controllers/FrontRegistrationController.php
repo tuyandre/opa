@@ -126,4 +126,23 @@ public function sendEmailToStudent($registration)
         $message->from('' . env('MAIL_FROM_ADDRESS') . '', env('MAIL_FROM_NAME'));
     });
 }
+
+
+    //services
+    public function frontServices()
+    {
+        $services = TrainingService::where('is_active', true)->get();
+        return view('frontend.services', compact('services'));
+    }
+
+    public function frontAboutUs()
+    {
+        return view('frontend.about_us');
+    }
+    public function frontContactUs()
+    {
+        return view('frontend.contact');
+    }
+
+
 }

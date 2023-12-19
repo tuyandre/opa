@@ -67,7 +67,7 @@
 
 
                     <div class="text-center">
-                        <input type="submit" class="btn btn-info rounded" value="Register"/></div>
+                        <input type="submit" class="btn btn-info rounded btn-contactus" value="Register"/></div>
                 </form>
 
             </div>
