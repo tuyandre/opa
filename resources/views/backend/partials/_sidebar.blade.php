@@ -49,5 +49,11 @@
                     <span class="menu-title">Contact Us</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('admin.partner.index')}}">
+                    <i class="icon-paper menu-icon"></i>
+                    <span class="menu-title">Partner</span>
+                </a>
+            </li>
         </ul>
       </nav>

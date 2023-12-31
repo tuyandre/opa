@@ -12,7 +12,7 @@
 
         <div class="section-title">
             <h2>Pricing</h2>
-            <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+            <p>To be a reliable audit firm for SMEs with creative and innovative thoughts. Be with us for becoming professional Auditors ,Advanced excel expert and So on ... </p>
         </div>
 
         <div class="row">
@@ -21,7 +21,9 @@
             <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
                 <div class="box featured">
                     <h3>{{$session->session_title}}</h3>
-                    <h4>{{number_format($session->price)}}<sup>Rwf</sup><span>{{$session->duration}}</span></h4>
+                    <h4>{{number_format($session->price)}}<sup>Rwf</sup>
+{{--                        <span>{{$session->duration}}</span>--}}
+                    </h4>
 
                     <div class="row mt-0" style="padding-top: 0 !important;">
                         <div class="col-sm-12" style="padding-top: 0 !important;">

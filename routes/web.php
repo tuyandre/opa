@@ -80,4 +80,9 @@ Route::group(['prefix' => 'dashboard','middleware' => ['auth']], function () {
     Route::get('/service/delete/{id}', [App\Http\Controllers\ServiceController::class, 'destroy'])->name('admin.service.delete');
     Route::post('/service/update/{id}', [App\Http\Controllers\ServiceController::class, 'update'])->name('admin.service.update');
 
+    //partner routes
+    Route::get('/partners', [App\Http\Controllers\PartnerController::class, 'index'])->name('admin.partner.index');
+    Route::post('/partners/store', [App\Http\Controllers\PartnerController::class, 'store'])->name('admin.partner.store');
+    Route::get('/partner/delete/{id}', [App\Http\Controllers\PartnerController::class, 'destroy'])->name('admin.partner.delete');
+
    });

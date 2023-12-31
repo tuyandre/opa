@@ -4,7 +4,7 @@
 use App\Constants\VariableConstants;
 
 //    $ROOT_FOLDER = '/public/';
-$main_url = url()->to('/').'/';
+$main_url = url()->to('/');
 $ROOT_FOLDER =$main_url.VariableConstants::ROOT_FOLDER;
 
 ?>
