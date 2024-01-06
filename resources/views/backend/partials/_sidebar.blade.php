@@ -55,5 +55,11 @@
                     <span class="menu-title">Partner</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('admin.trending.index')}}">
+                    <i class="icon-image menu-icon"></i>
+                    <span class="menu-title">Trending</span>
+                </a>
+            </li>
         </ul>
       </nav>
