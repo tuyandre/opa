@@ -24,6 +24,7 @@ Route::get('/pricing', [App\Http\Controllers\FrontRegistrationController::class,
 Route::get('/services', [App\Http\Controllers\FrontRegistrationController::class, 'frontServices'])->name('frontend.services');
 Route::get('/contact_us', [App\Http\Controllers\FrontRegistrationController::class, 'frontContactUs'])->name('frontend.contact.us');
 Route::get('/about_us', [App\Http\Controllers\FrontRegistrationController::class, 'frontAboutUs'])->name('frontend.about.us');
+Route::get('/trending/read-more', [App\Http\Controllers\FrontRegistrationController::class, 'trendingDetail'])->name('frontend.trending.detail');
 
 //registration page
 Route::get('/registration/{session_id}', [App\Http\Controllers\FrontRegistrationController::class, 'registration_training'])->name('frontend.registration.training');
@@ -84,5 +85,8 @@ Route::group(['prefix' => 'dashboard','middleware' => ['auth']], function () {
     Route::get('/partners', [App\Http\Controllers\PartnerController::class, 'index'])->name('admin.partner.index');
     Route::post('/partners/store', [App\Http\Controllers\PartnerController::class, 'store'])->name('admin.partner.store');
     Route::get('/partner/delete/{id}', [App\Http\Controllers\PartnerController::class, 'destroy'])->name('admin.partner.delete');
+
+
+    Route::get('/trending', [App\Http\Controllers\PartnerController::class, 'index'])->name('admin.trending.index');
 
    });

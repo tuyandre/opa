@@ -143,6 +143,10 @@ public function sendEmailToStudent($registration)
     {
         return view('frontend.contact');
     }
+    public function trendingDetail()
+    {
+        return view('frontend.trending_detail');
+    }
 
 
 }
