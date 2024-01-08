@@ -29,7 +29,7 @@
                     <h3>Core Values</h3>
                 </div>
                 <p>
-                    <strong>Our values define who we are, what we stand for, and how we behave</strong>
+                    Our values define <strong style="color: #e50031">TRUE</strong> identity of who we are, what we do, and how we behave
                 </p>
                 <ul>
                     <li><i class="ri-check-double-line"></i> Teamwork</li>
