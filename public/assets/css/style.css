@@ -665,7 +665,17 @@ section {
   font-size: 34px;
   color: #146c70;
 }
+.why-us .content h4 {
+    font-weight: 300;
+    font-size: 34px;
+    color: #146c70;
+}
 
+.why-us .content h2 {
+    font-weight: 400;
+    font-size: 34px;
+    color: #e50031;
+}
 .why-us .content h4 {
   font-size: 20px;
   font-weight: 700;
@@ -894,7 +904,7 @@ section {
 # Cta
 --------------------------------------------------------------*/
 .cta {
-  background: linear-gradient(rgba(40, 58, 90, 0.9), rgba(40, 58, 90, 0.9)), url("../img/cta-bg.jpg") fixed center center;
+  background: linear-gradient(#146c77,#146c77), url("../img/cta-bg.jpg") fixed center center;
   background-size: cover;
   padding: 120px 0;
 }
@@ -924,7 +934,7 @@ section {
 }
 
 .cta .cta-btn:hover {
-  background: #146c77;
+  background: #e50031;
   border: 2px solid #146c77;
 }
 

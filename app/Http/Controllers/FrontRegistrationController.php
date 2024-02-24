@@ -23,11 +23,11 @@ class FrontRegistrationController extends Controller
     }
 
     //get register page
-    public function registration_training($session_id)
+    public function registration_training()
     {
-        $session=TrainingSession::find($session_id);
         $services = TrainingService::where('is_active', true)->get();
-        return view('training', compact('session', 'services'));
+        $sessions=TrainingSession::where('is_active',true)->get();
+        return view('training', compact( 'services','sessions'));
     }
 
     //store registration form data
@@ -92,12 +92,17 @@ class FrontRegistrationController extends Controller
 
 
         //send email to admin
-
+        try {
         \Mail::send('emails.admin_registration', $details, function ($message) use ($admin_data) {
             $message->to($admin_data->email, $admin_data->name)->subject('New Registration');
             $message->from('' . env('MAIL_FROM_ADDRESS') . '', env('MAIL_FROM_NAME'));
         });
 
+        } catch (\Exception $e) {
+            // Handle the error here
+            \Log::error('Error sending email: ' . $e->getMessage());
+            // You can add additional error handling logic as needed, such as logging the error or sending a notification
+        }
 }
 
 //send email to student
@@ -120,11 +125,18 @@ public function sendEmailToStudent($registration)
         'session_description' => $registration->session->description,
         'services' => $registration->services,
     );
+    try{
     //send email to admin
     \Mail::send('emails.student_registration', $details, function ($message) use ($registration) {
         $message->to($registration->email, $registration->full_name)->subject('Registration Confirmation');
         $message->from('' . env('MAIL_FROM_ADDRESS') . '', env('MAIL_FROM_NAME'));
     });
+
+} catch (\Exception $e) {
+    // Handle the error here
+\Log::error('Error sending email: ' . $e->getMessage());
+    // You can add additional error handling logic as needed, such as logging the error or sending a notification
+}
 }
 
 
@@ -132,7 +144,8 @@ public function sendEmailToStudent($registration)
     public function frontServices()
     {
         $services = TrainingService::where('is_active', true)->get();
-        return view('frontend.services', compact('services'));
+        $sessions=TrainingSession::where('is_active',true)->get();
+        return view('frontend.services', compact('services','sessions'));
     }
 
     public function frontAboutUs()

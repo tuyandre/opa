@@ -1,5 +1,5 @@
 <!-- ======= Contact Section ======= -->
-<section id="contact" class="contact" style="background: #146c77">
+<section id="contact" class="contact" style="background: #146c77; padding-top: 80px">
     <div class="container" data-aos="fade-up">
         <div class="section-title">
             <h2 style="color: #eb0060">Training Registration</h2>
@@ -11,6 +11,7 @@
                 <form action="{{route('frontend.registration.store')}}" method="post" role="form" id="training_form" class="php-email-form">
                   @csrf
                     <div class="row">
+
                         <div class="form-group">
                             @if(session()->has('success'))
                                 <div class="alert alert-success">
@@ -23,6 +24,14 @@
                                     {{ session()->get('error') }}
                                 </div>
                             @endif
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="service">Select Session *</label>
+                            <select class="form-control select2"   name="session_id" id="session" style="width: 100%" required data-placeholder="Select Session/Training do you wish to Attend">
+                                @foreach($sessions as $session)
+                                    <option value="{{$session->id}}">{{$session->session_title}}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="name">Your Full Name *</label>
@@ -53,15 +62,15 @@
                             </select>
                         </div>
 
+                        <div class="form-group col-md-6">
+                            <label for="comment">Comment</label>
+                            <textarea class="form-control" name="comment" rows="3" id="comment"  required></textarea>
+                        </div>
 
                     <div class="form-group col-md-6">
-                        <label for="agreement"> <strong>I understand that I will have to pay RWF {{number_format($session->price)}} before enrollment for the training of my choice and to negotiate with OPA about the price for consultancy services. </strong> </label>
+                        <label for="agreement"> <strong>I understand that I will have to pay  200,000.00 RWf before enrollment for the training of my choice and
+                                Two consecutive absence with no clear justification qualify is automatic dismissal from the training program. </strong> </label>
                         <input type="checkbox" value="1" name="agreement" id="agreement">
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="comment">Comment</label>
-                        <textarea class="form-control" name="comment" rows="3" id="comment"  required></textarea>
-                        <input type="hidden" name="session_id" value="{{$session->id}}">
                     </div>
                     </div>
 
