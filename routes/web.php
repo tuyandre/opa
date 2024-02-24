@@ -27,7 +27,7 @@ Route::get('/about_us', [App\Http\Controllers\FrontRegistrationController::class
 Route::get('/trending/read-more', [App\Http\Controllers\FrontRegistrationController::class, 'trendingDetail'])->name('frontend.trending.detail');
 
 //registration page
-Route::get('/registration/{session_id}', [App\Http\Controllers\FrontRegistrationController::class, 'registration_training'])->name('frontend.registration.training');
+Route::get('/registration', [App\Http\Controllers\FrontRegistrationController::class, 'registration_training'])->name('frontend.registration.training');
 //store registration form data
 Route::post('/registration/store', [App\Http\Controllers\FrontRegistrationController::class, 'storeRegistration'])->name('frontend.registration.store');
 //contact us routes
