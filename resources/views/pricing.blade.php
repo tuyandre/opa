@@ -64,7 +64,7 @@
 
                 </div>
 
-                <div class="col-lg-5 align-items-stretch order-1 order-lg-2 img pricing-image-div" style='background-image: url("assets/img/OPA.JPG"); border-radius: 16%;' data-aos="zoom-in" data-aos-delay="120">&nbsp;</div>
+                <div class="col-lg-5 align-items-stretch order-1 order-lg-2 img pricing-image-div" style='background-image: url("assets/img/OPA.jpg"); border-radius: 16%;' data-aos="zoom-in" data-aos-delay="120">&nbsp;</div>
             </div>
 
         </div>
