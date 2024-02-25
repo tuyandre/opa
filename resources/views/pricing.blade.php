@@ -10,7 +10,7 @@
 
                 </div>
                 <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
-                    <img src="{{asset(VariableConstants::ROOT_FOLDER.'assets/img/hero-img.png')}}" class="img-fluid animated"  alt="">
+                    <img src="{{asset(VariableConstants::ROOT_FOLDER.'assets/img/OPA2.jpg')}}" style="height: 80%" class="img-fluid animated"  alt="">
                 </div>
             </div>
         </div>
@@ -64,7 +64,7 @@
 
                 </div>
 
-                <div class="col-lg-5 align-items-stretch order-1 order-lg-2 img" style='background-image: url("assets/img/why-us.png");' data-aos="zoom-in" data-aos-delay="150">&nbsp;</div>
+                <div class="col-lg-5 align-items-stretch order-1 order-lg-2 img pricing-image-div" style='background-image: url("assets/img/OPA.JPG"); border-radius: 16%;' data-aos="zoom-in" data-aos-delay="120">&nbsp;</div>
             </div>
 
         </div>
@@ -100,7 +100,10 @@
             <div class="row">
                 <div class="col-lg-9 text-center text-lg-start">
                     <h3>Training Fees</h3>
-                    <p>– For a period of 1 month and half (1.5Months), the training fee is 200,000 RWF inclusive of VAT payable in advance prior to joining the training. This fee covers the access to the training space and materials, all the program support, internet access, etc. </p>
+                    <p>– For a period of 1 month and half (1.5Months), the training fee is 200,000 RWF inclusive of VAT payable in
+                        advance prior to joining the training. This fee covers the access to the training space and materials,
+                        all the program support, internet access.<br>
+                        <span style="color: yellow"><strong>Note: </strong>A trainee will bring his or her own laptop. We offer notebook and pens free of charges</span></p>
                     <p>– The registration is free of charge. If you see someone asking for registration fees, you are advised to report the case immediately to OPA to avoid any. </p>
                     <p>– Upon negotiation, the instalments payment is acceptable but not exceeding the 3rd week of the training period.  </p>
                     <p>All the amounts should be paid to the company account number: 4002201067147 RWF in Equity Bank or USD Account Number: 4012201079486 registered for Office of Professional Auditors Ltd. Or MTN MOMO CODE: 012300</p>

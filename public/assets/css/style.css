@@ -774,7 +774,7 @@ section {
 
 @media (max-width: 992px) {
   .why-us .img {
-    min-height: 400px;
+    min-height: 350px;
   }
 
   .why-us .content {
@@ -1459,6 +1459,7 @@ section {
 .btn-contactus{
     background: #146c77;
     border-radius: 10px;
+    color: white;
 }
 .btn-contactus:hover{
     background: #e50031;
@@ -1743,6 +1744,13 @@ section {
   font-family: "Jost", sans-serif;
   color: #5e5e5e;
 }
+#footer .footer-top .footer-links p {
+    font-size: 14px;
+    line-height: 24px;
+    margin-bottom: 0;
+    font-family: "Jost", sans-serif;
+    color: #5e5e5e;
+}
 
 #footer .footer-top h4 {
   font-size: 16px;
@@ -1831,6 +1839,12 @@ section {
   transition: 0.3s;
 }
 
+@media (max-width: 768px) {
+    .pricing-image-div{
+        width: 100%;
+        background-size: cover;
+    }
+}
 @media (max-width: 768px) {
   #footer .footer-bottom {
     padding-top: 20px;
