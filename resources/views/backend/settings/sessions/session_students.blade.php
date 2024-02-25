@@ -86,6 +86,7 @@
                                                         <a class="dropdown-item  delete_btn"
                                                            href="{{route('admin.student.delete', $student->id)}}">Delete</a>
                                                 @endif
+                                                    <a class="dropdown-item certificate_btn" data-student="{{$student->id}}" href="">Upload Certificate</a>
                                                 <a class="dropdown-item  view_btn"
                                                    href="#">View</a>
 
@@ -132,6 +133,48 @@
                             </div>
 
                         </div>
+                    <div class="modal-footer">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <!-- /.modal-content -->
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="certificateModal" data-backdrop="static" tabindex="-1" role="dialog"
+         aria-labelledby="staticBackdrop" aria-hidden="true">
+        <div class="modal-dialog">
+            <form action="{{route('admin.certificates.store')}}" method="post" id="submissionForm" class="reply_form" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Upload Student Certificate</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i aria-hidden="true" class="ki ki-close"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <input type="text" name="title" id="title" class="form-control" required/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea type="text"  name="description" id="description" class="form-control" required> </textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="file">File</label>
+                            <input type="file" name="file" id="file" class="form-control" required/>
+                            <input type="hidden" name="student_id" id="cert_student_id" >
+                        </div>
+
+                    </div>
                     <div class="modal-footer">
                         <div class="btn-group">
                             <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
@@ -196,6 +239,16 @@
                 $('#student_id').val(student_id);
                 $('#replyModal').modal('show');
             });
+
+
+            $(document).on('click', '.certificate_btn', function (e) {
+                e.preventDefault();
+                var student_id = $(this).data('student');
+                $('#cert_student_id').val(student_id);
+                $('#certificateModal').modal('show');
+            });
+
+
             //validation
             $("#reply_form").validate({
                 rules: {

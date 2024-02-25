@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
-                <h1>Office of Professional Auditor</h1>
+                <h1>Office of Professional Auditors</h1>
                 <h2>The power behind your progress</h2>
                 <div class="d-flex justify-content-center justify-content-lg-start">
 {{--                    <a href="#about" class="btn-get-started scrollto">Training Registration</a>--}}
