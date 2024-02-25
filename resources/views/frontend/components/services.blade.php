@@ -78,6 +78,22 @@
                     </ul>
                 </div>
             </div>
+            <div class="col-xl-4 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="300">
+                <div class="icon-box">
+                    <div class="icon"><i class="bx bx-task"></i></div>
+                    <h4><a href="">Bookkeeping services</a></h4>
+                    <p>According to the Official Gazette n° Special of 14/09/2023 “Every taxpayer is required to keep the books of accounts in accordance
+                        with generally accepted accounting principles (GAAP)”. The books of accounts are nothing but the recording of the company transactions
+                        during a particular accounting period.
+                    </p>
+                    <p>
+                        At an affordable price, we do this for our clients. We just need to make an agreement about how to get the work done.
+                        We shall need documents justifying what happened within your organization so that we can do the rest. Give us, sales invoices,
+                        purchases invoices, importation documents (DMC), bank statements, stock sheet showing the stock movements and ask us the reports.
+                        We shall use our software designed to keep the books of accounts and give you periodic reports about your performance.
+                    </p>
+                </div>
+            </div>
 
         </div>
 
