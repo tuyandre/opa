@@ -89,4 +89,21 @@ Route::group(['prefix' => 'dashboard','middleware' => ['auth']], function () {
 
     Route::get('/trending', [App\Http\Controllers\PartnerController::class, 'index'])->name('admin.trending.index');
 
-   });
+    Route::get('/training-materials', [App\Http\Controllers\TrainingMaterialController::class, 'materials'])->name('admin.training.materials.index');
+    Route::get('/training-materials/delete/{id}', [App\Http\Controllers\TrainingMaterialController::class, 'destroy'])->name('admin.training.materials.delete');
+    Route::post('/store/training-materials', [App\Http\Controllers\TrainingMaterialController::class, 'storeMaterial'])->name('admin.training.materials.store');
+
+    Route::get('/certificates', [App\Http\Controllers\CertificateController::class, 'certificates'])->name('admin.certificates.index');
+    Route::get('/certificates/delete/{id}', [App\Http\Controllers\CertificateController::class, 'destroy'])->name('admin.certificates.delete');
+    Route::post('/store/certificates', [App\Http\Controllers\CertificateController::class, 'storeCertificate'])->name('admin.certificates.store');
+
+
+});
+Route::group(['prefix' => 'student','middleware' => ['auth']], function () {
+    Route::get('/training-materials', [App\Http\Controllers\TrainingMaterialController::class, 'index'])->name('student.training.materials.index');
+    Route::get('/materials/download/{file}', [App\Http\Controllers\DownloadController::class, 'downloadMaterial'])->name('student.training.materials.download');
+
+    Route::get('/certificates', [App\Http\Controllers\CertificateController::class, 'index'])->name('student.certificates.index');
+   Route::get('/download/certificates/{file}', [App\Http\Controllers\DownloadController::class, 'downloadCertificate'])->name('student.certificates.download');
+
+});

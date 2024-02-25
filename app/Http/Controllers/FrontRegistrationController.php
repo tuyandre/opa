@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\RegistrationStudent;
+use App\Models\Role;
 use App\Models\StudentService;
 use App\Models\TrainingService;
 use App\Models\TrainingSession;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class FrontRegistrationController extends Controller
 {
@@ -60,6 +63,20 @@ class FrontRegistrationController extends Controller
             $service_student->training_service_id = $service;
             $service_student->save();
         }
+        $randomString = Str::random(10);
+
+        $role= Role::where('name','Student')->first();
+
+        $user=new User();
+        $user->name=$request->name;
+        $user->email=$request->email;
+        $user->password=bcrypt('password');
+        $user->student_id=$registration->id;
+        $user->role_id=$role->id;
+        $user->save();
+
+
+
         //send email to admin and student
         $this->sendEmailToAdmin($registration);
         $this->sendEmailToStudent($registration);
@@ -126,7 +143,7 @@ public function sendEmailToStudent($registration)
         'services' => $registration->services,
     );
     try{
-    //send email to admin
+    //send email to student
     \Mail::send('emails.student_registration', $details, function ($message) use ($registration) {
         $message->to($registration->email, $registration->full_name)->subject('Registration Confirmation');
         $message->from('' . env('MAIL_FROM_ADDRESS') . '', env('MAIL_FROM_NAME'));

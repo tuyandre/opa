@@ -1,24 +1,15 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
+            @if(auth()->user()->is_super_admin)
           <li class="nav-item">
             <a class="nav-link" href="{{route('home')}}">
               <i class="icon-grid menu-icon"></i>
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
-{{--            <li class="nav-item">--}}
-{{--                <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">--}}
-{{--                    <i class="icon-layout menu-icon"></i>--}}
-{{--                    <span class="menu-title">Training Session</span>--}}
-{{--                    <i class="menu-arrow"></i>--}}
-{{--                </a>--}}
-{{--                <div class="collapse" id="ui-basic">--}}
-{{--                    <ul class="nav flex-column sub-menu">--}}
-{{--                        <li class="nav-item"> <a class="nav-link" href="{{route('admin.training.session.create')}}">Add Session</a></li>--}}
-{{--                        <li class="nav-item"> <a class="nav-link" href="{{route('admin.training.session')}}">All Session</a></li>--}}
-{{--                    </ul>--}}
-{{--                </div>--}}
-{{--            </li>--}}
+
+
+
             <li class="nav-item">
                 <a class="nav-link" href="{{route('admin.service.index')}}">
                     <i class="icon-layout menu-icon"></i>
@@ -61,5 +52,31 @@
                     <span class="menu-title">Trending</span>
                 </a>
             </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('admin.certificates.index')}}">
+                        <i class="icon-file menu-icon"></i>
+                        <span class="menu-title">Certificates</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('admin.training.materials.index')}}">
+                        <i class="icon-folder menu-icon"></i>
+                        <span class="menu-title">Training Materials</span>
+                    </a>
+                </li>
+            @else
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('student.certificates.index')}}">
+                        <i class="icon-file menu-icon"></i>
+                        <span class="menu-title">Certificates</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('student.training.materials.index')}}">
+                        <i class="icon-folder menu-icon"></i>
+                        <span class="menu-title">Training Materials</span>
+                    </a>
+                </li>
+            @endif
         </ul>
       </nav>
