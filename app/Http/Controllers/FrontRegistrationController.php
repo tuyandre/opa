@@ -43,6 +43,14 @@ class FrontRegistrationController extends Controller
             'telephone' => 'required',
             'comment' => 'required'
         ]);
+
+        //chck if email exists
+        $email = RegistrationStudent::where('email', $request->email)->first();
+        if ($email) {
+            return redirect()->back()->with('error', 'Email already exists');
+        }
+
+
         $registration = new RegistrationStudent();
         $registration->training_session_id = $request->session_id;
         $registration->full_name = $request->name;
@@ -56,12 +64,14 @@ class FrontRegistrationController extends Controller
         //store services
         //multiple services
         $services = $request->services;
-        foreach ($services as $service) {
-            $service_student = new StudentService();
-            $service_student->registration_student_id = $registration->id;
-            $service_student->training_session_id = $request->session_id;
-            $service_student->training_service_id = $service;
-            $service_student->save();
+        if ($services) {
+            foreach ($services as $service) {
+                $service_student = new StudentService();
+                $service_student->registration_student_id = $registration->id;
+                $service_student->training_session_id = $request->session_id;
+                $service_student->training_service_id = $service;
+                $service_student->save();
+            }
         }
         $randomString = Str::random(10);
 

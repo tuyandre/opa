@@ -19,9 +19,9 @@
 
                         <div class="col-md-12 grid-margin ">
                             <div class="row">
-                                <div class="col-md-3 mb-4 stretch-card second">
-                                    <div class="card card-tale">
-                                        <div class="card-body">
+                                <div class="col-md-3 mb-4 stretch-card second" >
+                                    <div class="card card-tale" style="background: #146c77">
+                                        <div class="card-body" >
                                             <p class="mb-4">Training Session</p>
                                             <?php
 
@@ -33,8 +33,8 @@
                                     </div>
                                 </div>
                                 <div class="col-md-3 mb-4 stretch-card transparent">
-                                    <div class="card card-dark-blue">
-                                        <div class="card-body">
+                                    <div class="card card-dark-blue" style="background: #17808d">
+                                        <div class="card-body" >
                                             <p class="mb-4">Services</p>
                                             <?php
                                             $services = \App\Models\TrainingService::all();
@@ -45,7 +45,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-3 mb-4  stretch-card transparent">
-                                    <div class="card card-light-blue">
+                                    <div class="card card-light-blue" style="background: #0c444b">
                                         <div class="card-body">
                                             <p class="mb-4">Students Registered</p>
                                             <?php
@@ -57,7 +57,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-3 mb-4 stretch-card transparent">
-                                    <div class="card card-light-danger">
+                                    <div class="card card-light-danger" style="background: #105861">
                                         <div class="card-body">
                                             <p class="mb-4">Contact Us</p>
                                             <?php
