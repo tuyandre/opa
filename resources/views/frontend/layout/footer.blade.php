@@ -55,7 +55,7 @@
 
                 <div class="col-lg-3 col-md-6 footer-links">
                     <h4>Our Social Networks</h4>
-                    <p>At OPA, we understand the power and importance of social media in today's digital landscape.
+                    <p class="">At OPA, we understand the power and importance of social media in today's digital landscape.
                         We actively engage with our audience across various social media platforms, including Facebook, Twitter, Instagram, LinkedIn, and more.
                         Through regular posts, updates, and interactions, we strive to foster meaningful connections with our clients and followers.
                     <div class="social-links mt-3">
