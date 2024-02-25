@@ -39,7 +39,7 @@ class FrontRegistrationController extends Controller
         $request->validate([
             'session_id' => 'required|exists:training_sessions,id',
             'name' => 'required',
-            'email' => 'required',
+            'email' => 'required|email|unique:registration_students,email',
             'telephone' => 'required',
             'comment' => 'required'
         ]);
