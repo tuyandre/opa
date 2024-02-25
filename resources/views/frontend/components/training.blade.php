@@ -56,6 +56,7 @@
                         <div class="form-group col-md-6">
                             <label for="service">Select service/Training do you wish to have *</label>
                             <select class="form-control select2" multiple name="services[]" id="service" style="width: 100%" required data-placeholder="Select service/Training do you wish to have">
+                               <option value="">Select service/Training do you wish to have</option>
                                 @foreach($services as $service)
                                 <option value="{{$service->id}}">{{$service->title}}</option>
                                 @endforeach
