@@ -77,7 +77,7 @@
 
             <div class="row content">
                 <div class="col-lg-8">
-                    <div class="text-center">
+                    <div class="text-left">
                         <h3>Admission Criteria</h3>
                     </div>
                     <ul>

@@ -2,7 +2,7 @@
 <section id="contact" class="contact" style="background: #146c77; padding-top: 80px">
     <div class="container" data-aos="fade-up">
         <div class="section-title">
-            <h2 style="color: #eb0060">Training Registration</h2>
+            <h2 style="color: white">Training Registration</h2>
 {{--            <p> Training registration summary</p>--}}
         </div>
         <div class="row">

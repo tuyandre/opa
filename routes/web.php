@@ -19,7 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 //pricing page
-Route::get('/pricing', [App\Http\Controllers\FrontRegistrationController::class, 'pricing'])->name('frontend.pricing');
+Route::get('/training-registration', [App\Http\Controllers\FrontRegistrationController::class, 'pricing'])->name('frontend.pricing');
 //services page
 Route::get('/services', [App\Http\Controllers\FrontRegistrationController::class, 'frontServices'])->name('frontend.services');
 Route::get('/contact_us', [App\Http\Controllers\FrontRegistrationController::class, 'frontContactUs'])->name('frontend.contact.us');
