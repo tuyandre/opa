@@ -54,7 +54,7 @@ class StudentController extends Controller
                 'message' => $request->reply_message,
                 'status' => $request->status
             );
-            \Mail::send('emails.reply', $data, function ($message) use ($data) {
+            \Mail::send('emails.reply_email', $data, function ($message) use ($data) {
                 $message->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
                 $message->to($data['email'], $data['name']);
                 $message->subject('Reply to your registration');
