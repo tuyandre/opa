@@ -62,7 +62,7 @@ class StudentController extends Controller
 
             return redirect()->back()->with('success', 'Reply sent successfully.');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Something went wrong, please try again.');
+            return redirect()->back()->with('error', 'Something went wrong, please try again.'.$e->getMessage());
         }
     }
 }
