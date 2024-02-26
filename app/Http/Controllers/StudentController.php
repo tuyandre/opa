@@ -54,11 +54,19 @@ class StudentController extends Controller
                 'message' => $request->reply_message,
                 'status' => $request->status
             );
-            \Mail::send('emails.reply_email', $data, function ($message) use ($data) {
-                $message->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
-                $message->to($data['email'], $data['name']);
-                $message->subject('Reply to your registration');
-            });
+            if ($request->status=='Accepted') {
+                \Mail::send('emails.reply_email', $data, function ($message) use ($data) {
+                    $message->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
+                    $message->to($data['email'], $data['name']);
+                    $message->subject('Reply to your registration');
+                });
+            }else{
+                \Mail::send('emails.reply_email2', $data, function ($message) use ($data) {
+                    $message->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
+                    $message->to($data['email'], $data['name']);
+                    $message->subject('Reply to your registration');
+                });
+            }
 
             return redirect()->back()->with('success', 'Reply sent successfully.');
         } catch (\Exception $e) {

@@ -135,9 +135,7 @@
                 <tr>
                     <td bgcolor="#ffffff" align="left"
                         style="padding: 20px 30px 40px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
-                        <p style="margin: 0;">We're excited to notify you, You are selected to continue OPA training Program ! .</p>
-                        <p>Please make payments to the company account number: 4002201067147 RWF in Equity Bank or USD Account Number:
-                            4012201079486 registered for Office of Professional Auditors Ltd. Or MTN MOMO CODE: 012300</p>
+                        <p style="margin: 0;">We're Sorry to notify you, You are not selected to continue OPA training Program ! .</p>
                     </td>
                 </tr>
                 <tr>

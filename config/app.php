@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Office of Professional Auditor'),
+    'name' => env('APP_NAME', 'Office of Professional Auditors'),
 
     /*
     |--------------------------------------------------------------------------
