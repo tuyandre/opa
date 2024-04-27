@@ -46,12 +46,37 @@
                                 <input type="text" class="form-control" name="telephone" id="telephone" required>
                         </div>
                         <div class="form-group col-md-6">
+                            <label for="gender">Select Gender *</label>
+                            <select class="form-control select2"   name="gender" id="gender" style="width: 100%" required data-placeholder="Select Gender">
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="B-sexual">B-sexual</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="education_level">Select Level of Education *</label>
+                            <select class="form-control select2"   name="education_level" id="education_level" style="width: 100%" required data-placeholder="Select Education Level">
+                                <option value="Senior Secondary School (Advanced level) – 3 years">Senior Secondary School (Advanced level) – 3 years</option>
+                                <option value="University Bachelor’s degree – 4 years">University Bachelor’s degree – 4 years</option>
+                                <option value="Master">Master</option>
+                                <option value="Doctorate">Doctorate</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
                             <label for="company_name">Company Name</label>
                             <input type="text" class="form-control" name="company_name" id="company_name" >
                         </div>
                         <div class="form-group col-md-6">
                             <label for="company_tin">Company Tin</label>
                             <input type="number" class="form-control" name="company_tin" id="company_tin" minlength="9" maxlength="9">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="position">Select Position do you hold in your company  *</label>
+                            <select class="form-control select2"   name="position" id="position" style="width: 100%" required data-placeholder="Select Gender">
+                                <option value="CEO">CEO</option>
+                                <option value="HR">HR</option>
+                                <option value="CFo">CFo</option>
+                            </select>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="service">Select service/Training do you wish to have *</label>
