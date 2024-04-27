@@ -28,10 +28,13 @@
                                 <th>Full Name</th>
                                 <th>Telephone</th>
                                 <th>Email</th>
+                                <th>Gender</th>
                                 <th>Registration Date</th>
                                 <th>Status</th>
                                 <th>Company Tin</th>
                                 <th>Company Name</th>
+                                <th>Position</th>
+                                <th>Education Level</th>
                                 <th>Payment Agreement</th>
                                 <th>Payment Status</th>
                                 <th>Action</th>
@@ -45,6 +48,7 @@
                                     <td>{{$student->full_name}}</td>
                                     <td>{{$student->telephone}}</td>
                                     <td>{{$student->email}}</td>
+                                    <td>{{$student->gender}}</td>
                                     <td>{{$student->created_at}}</td>
                                     <td>
                                         @if($student->reply_status == 1)
@@ -62,6 +66,8 @@
                                     </td>
                                     <td>{{$student->company_tin}}</td>
                                     <td>{{$student->company_name}}</td>
+                                    <td>{{$student->position}}</td>
+                                    <td>{{$student->education_level}}</td>
                                     <td>
                                         @if($student->payment_agreement == 1)
                                             <span class="badge badge-success">Yes</span>

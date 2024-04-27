@@ -41,6 +41,9 @@ class FrontRegistrationController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:registration_students,email',
             'telephone' => 'required',
+            'gender' => 'required',
+            'education_level' => 'required',
+            'position' => 'required',
             'comment' => 'required'
         ]);
 
@@ -60,6 +63,9 @@ class FrontRegistrationController extends Controller
         $registration->company_name = $request->company_name;
         $registration->payment_agreement = $request->agreement?true:false;
         $registration->comment = $request->comment;
+        $registration->gender = $request->gender;
+        $registration->education_level = $request->education_level;
+        $registration->position = $request->position;
         $registration->save();
         //store services
         //multiple services
