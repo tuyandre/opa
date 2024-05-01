@@ -10,7 +10,7 @@
 
                 </div>
                 <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
-                    <img src="{{asset(VariableConstants::ROOT_FOLDER.'assets/img/OPA2.jpg')}}" style="height: 80%" class="img-fluid animated"  alt="">
+                    <img src="{{asset(VariableConstants::ROOT_FOLDER.'assets/img/web_0.jpg')}}" style="height: 80%" class="img-fluid animated"  alt="">
                 </div>
             </div>
         </div>

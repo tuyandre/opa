@@ -56,10 +56,11 @@
                         <div class="form-group col-md-6">
                             <label for="education_level">Select Level of Education *</label>
                             <select class="form-control select2"   name="education_level" id="education_level" style="width: 100%" required data-placeholder="Select Education Level">
-                                <option value="Senior Secondary School (Advanced level) – 3 years">Senior Secondary School (Advanced level) – 3 years</option>
-                                <option value="University Bachelor’s degree – 4 years">University Bachelor’s degree – 4 years</option>
+                                <option value="Secondary Education(A2)">Secondary Education(A2)</option>
+                                <option value="Post-Secondary Diplomas(A1)">Post-Secondary Diplomas(A1)</option>
+                                <option value="Bachelor">Bachelor</option>
                                 <option value="Master">Master</option>
-                                <option value="Doctorate">Doctorate</option>
+                                <option value="Doctorate(PhD)">Doctorate(PhD)</option>
                             </select>
                         </div>
                         <div class="form-group col-md-6">
@@ -75,7 +76,12 @@
                             <select class="form-control select2"   name="position" id="position" style="width: 100%" required data-placeholder="Select Gender">
                                 <option value="CEO">CEO</option>
                                 <option value="HR">HR</option>
-                                <option value="CFo">CFo</option>
+                                <option value="CFO">CFO</option>
+                                <option value="Accountant">Accountant</option>
+                                <option value="Auditor">Auditor</option>
+                                <option value="Cashier">Cashier</option>
+                                <option value="Procurement">Procurement</option>
+                                <option value="Other">Other</option>
                             </select>
                         </div>
                         <div class="form-group col-md-6">
