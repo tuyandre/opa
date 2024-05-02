@@ -7,7 +7,7 @@
 @section('content')
 
 
-    @include('frontend.components.trending')
+{{--    @include('frontend.components.trending')--}}
     @include('frontend.components.aboutus')
 
 

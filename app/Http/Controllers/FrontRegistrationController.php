@@ -189,6 +189,14 @@ public function sendEmailToStudent($registration)
     {
         return view('frontend.contact');
     }
+    public function frontGallery()
+    {
+        return view('frontend.gallery');
+    }
+    public function frontTeam()
+    {
+        return view('frontend.teams');
+    }
     public function trendingDetail()
     {
         return view('frontend.trending_detail');

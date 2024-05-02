@@ -13,8 +13,8 @@
                 <li><a class="getstarted scrollto active" href="/">Home</a></li>
                 <li><a class="getstarted scrollto" href="{{route('frontend.about.us')}}">About</a></li>
                 <li><a class="getstarted scrollto" href="{{route('frontend.services')}}">Services</a></li>
-{{--                <li><a class="nav-link   scrollto" href="#portfolio">Portfolio</a></li>--}}
-{{--                <li><a class="nav-link scrollto" href="#team">Team</a></li>--}}
+                <li><a class="nav-link   scrollto" href="{{route('frontend.gallery')}}">Our Gallery</a></li>
+                <li><a class="nav-link scrollto" href="{{route('frontend.team')}}">Our Team</a></li>
                 <li><a class="getstarted scrollto" href="{{route('frontend.contact.us')}}">Contact</a></li>
                 <li><a class="getstarted scrollto" href="{{route('frontend.pricing')}}">Training Program </a></li>
                 <li><a class="getstarted scrollto btn " style="background: #e50031" href="{{route('login')}}">Staff Login </a></li>
