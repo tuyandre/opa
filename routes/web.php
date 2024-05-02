@@ -23,6 +23,8 @@ Route::get('/training-registration', [App\Http\Controllers\FrontRegistrationCont
 //services page
 Route::get('/services', [App\Http\Controllers\FrontRegistrationController::class, 'frontServices'])->name('frontend.services');
 Route::get('/contact_us', [App\Http\Controllers\FrontRegistrationController::class, 'frontContactUs'])->name('frontend.contact.us');
+Route::get('/our_gallery', [App\Http\Controllers\FrontRegistrationController::class, 'frontGallery'])->name('frontend.gallery');
+Route::get('/our_teams', [App\Http\Controllers\FrontRegistrationController::class, 'frontTeam'])->name('frontend.team');
 Route::get('/about_us', [App\Http\Controllers\FrontRegistrationController::class, 'frontAboutUs'])->name('frontend.about.us');
 Route::get('/trending/read-more', [App\Http\Controllers\FrontRegistrationController::class, 'trendingDetail'])->name('frontend.trending.detail');
 
