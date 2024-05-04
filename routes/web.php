@@ -89,7 +89,14 @@ Route::group(['prefix' => 'dashboard','middleware' => ['auth']], function () {
     Route::get('/partner/delete/{id}', [App\Http\Controllers\PartnerController::class, 'destroy'])->name('admin.partner.delete');
 
 
-    Route::get('/trending', [App\Http\Controllers\PartnerController::class, 'index'])->name('admin.trending.index');
+    Route::get('/trending', [App\Http\Controllers\TrendingController::class, 'index'])->name('admin.trending.index');
+    Route::post('/trending/store', [App\Http\Controllers\TrendingController::class, 'store'])->name('admin.trending.store');
+    Route::post('/trending/update/{id}', [App\Http\Controllers\TrendingController::class, 'update'])->name('admin.trending.update');
+    Route::get('/trending/destroy/{id}', [App\Http\Controllers\TrendingController::class, 'destroy'])->name('admin.trending.destroy');
+    Route::get('/galleries', [App\Http\Controllers\GalleryController::class, 'index'])->name('admin.gallery.index');
+    Route::post('/galleries/store', [App\Http\Controllers\GalleryController::class, 'store'])->name('admin.gallery.store');
+    Route::post('/galleries/update', [App\Http\Controllers\GalleryController::class, 'update'])->name('admin.gallery.update');
+    Route::get('/galleries/destroy/{id}', [App\Http\Controllers\GalleryController::class, 'destroy'])->name('admin.gallery.destroy');
 
     Route::get('/training-materials', [App\Http\Controllers\TrainingMaterialController::class, 'materials'])->name('admin.training.materials.index');
     Route::get('/training-materials/delete/{id}', [App\Http\Controllers\TrainingMaterialController::class, 'destroy'])->name('admin.training.materials.delete');

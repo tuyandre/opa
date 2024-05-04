@@ -1,6 +1,6 @@
 @php use App\Constants\VariableConstants; @endphp
 <!-- ======= Hero Section ======= -->
-<section id="hero" class="d-flex align-items-center">
+<section id="hero" class="d-flex align-items-center" style="margin-bottom: -20px !important;padding-bottom: -20px !important;">
 
     <div class="container">
         <div class="row">
