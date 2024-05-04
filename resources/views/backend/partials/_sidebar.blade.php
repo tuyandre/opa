@@ -53,6 +53,12 @@
                 </a>
             </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="{{route('admin.gallery.index')}}">
+                        <i class="icon-image menu-icon"></i>
+                        <span class="menu-title">Galleries</span>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{route('admin.certificates.index')}}">
                         <i class="icon-file menu-icon"></i>
                         <span class="menu-title">Certificates</span>

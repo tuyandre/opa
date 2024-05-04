@@ -13,7 +13,7 @@
 
             <div class="col-lg-6" data-aos="zoom-in" data-aos-delay="100">
                 <div class="member d-flex align-items-start">
-                    <div class="pic"><img src="{{asset(VariableConstants::ROOT_FOLDER.'assets/img/zakiruru.png')}}" class="img-fluid" alt=""></div>
+                    <div class="pic"><img src="{{asset(VariableConstants::ROOT_FOLDER.'assets/img/zakiruru2.png')}}" class="img-fluid" alt=""></div>
                     <div class="member-info">
                         <h4>Jean Baptiste Uzakiruru</h4>
                         <span>Chief Executive Officer</span>

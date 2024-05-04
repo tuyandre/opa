@@ -21,62 +21,70 @@
 
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
 
+            <?php
+                $galleries=\App\Models\Gallery::where('is_active',1)->orderBy('id','desc')->get();
+                ?>
+
+            @foreach($galleries as $gallery)
+
+
             <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                <div class="portfolio-img"><img src="{{asset(VariableConstants::ROOT_FOLDER.'assets/img/web_2.jpg')}}" class="img-fluid" alt=""></div>
+                <div class="portfolio-img"><img src="{{asset(VariableConstants::ROOT_FOLDER.$gallery->image)}}" class="img-fluid" alt=""></div>
                 <div class="portfolio-info">
-                    <h4>Student </h4>
-                    <p>With More collaboration</p>
+                    <h4>{{$gallery->title}} </h4>
+                    <p>{{$gallery->description}}</p>
                  </div>
             </div>
+            @endforeach
 
-            <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                <div class="portfolio-img"><img src="{{asset(VariableConstants::ROOT_FOLDER.'assets/img/web_1.jpg')}}" class="img-fluid" alt=""></div>
-                <div class="portfolio-info">
-                    <h4>Student</h4>
+{{--            <div class="col-lg-4 col-md-6 portfolio-item filter-app">--}}
+{{--                <div class="portfolio-img"><img src="{{asset(VariableConstants::ROOT_FOLDER.'assets/img/web_1.jpg')}}" class="img-fluid" alt=""></div>--}}
+{{--                <div class="portfolio-info">--}}
+{{--                    <h4>Student</h4>--}}
 {{--                    <p>Web</p>--}}
-                </div>
-            </div>
+{{--                </div>--}}
+{{--            </div>--}}
 
-            <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                <div class="portfolio-img"><img src="{{asset(VariableConstants::ROOT_FOLDER.'assets/img/web_0.jpg')}}" class="img-fluid" alt=""></div>
-                <div class="portfolio-info">
+{{--            <div class="col-lg-4 col-md-6 portfolio-item filter-app">--}}
+{{--                <div class="portfolio-img"><img src="{{asset(VariableConstants::ROOT_FOLDER.'assets/img/web_0.jpg')}}" class="img-fluid" alt=""></div>--}}
+{{--                <div class="portfolio-info">--}}
 {{--                    <h4>App 2</h4>--}}
 {{--                    <p>App</p>--}}
-               </div>
-            </div>
+{{--               </div>--}}
+{{--            </div>--}}
 
-            <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-                <div class="portfolio-img"><img src="{{asset(VariableConstants::ROOT_FOLDER.'assets/img/web_3.jpg')}}" class="img-fluid" alt=""></div>
-                <div class="portfolio-info">
+{{--            <div class="col-lg-4 col-md-6 portfolio-item filter-card">--}}
+{{--                <div class="portfolio-img"><img src="{{asset(VariableConstants::ROOT_FOLDER.'assets/img/web_3.jpg')}}" class="img-fluid" alt=""></div>--}}
+{{--                <div class="portfolio-info">--}}
 {{--                    <h4>Card 2</h4>--}}
 {{--                    <p>Card</p>--}}
-                 </div>
-            </div>
+{{--                 </div>--}}
+{{--            </div>--}}
 
-            <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-                <div class="portfolio-img"><img src="{{asset(VariableConstants::ROOT_FOLDER.'assets/img/web_2.jpg')}}" class="img-fluid" alt=""></div>
-                <div class="portfolio-info">
+{{--            <div class="col-lg-4 col-md-6 portfolio-item filter-web">--}}
+{{--                <div class="portfolio-img"><img src="{{asset(VariableConstants::ROOT_FOLDER.'assets/img/web_2.jpg')}}" class="img-fluid" alt=""></div>--}}
+{{--                <div class="portfolio-info">--}}
 {{--                    <h4>Web 2</h4>--}}
 {{--                    <p>Web</p>--}}
-                </div>
-            </div>
+{{--                </div>--}}
+{{--            </div>--}}
 
-            <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                <div class="portfolio-img"><img src="{{asset(VariableConstants::ROOT_FOLDER.'assets/img/web_4.jpg')}}" class="img-fluid" alt=""></div>
-                <div class="portfolio-info">
+{{--            <div class="col-lg-4 col-md-6 portfolio-item filter-app">--}}
+{{--                <div class="portfolio-img"><img src="{{asset(VariableConstants::ROOT_FOLDER.'assets/img/web_4.jpg')}}" class="img-fluid" alt=""></div>--}}
+{{--                <div class="portfolio-info">--}}
 {{--                    <h4>App 3</h4>--}}
 {{--                    <p>App</p>--}}
 
-                </div>
-            </div>
+{{--                </div>--}}
+{{--            </div>--}}
 
-            <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-                <div class="portfolio-img"><img src="{{asset(VariableConstants::ROOT_FOLDER.'assets/img/web_3.jpg')}}" class="img-fluid" alt=""></div>
-                <div class="portfolio-info">
+{{--            <div class="col-lg-4 col-md-6 portfolio-item filter-card">--}}
+{{--                <div class="portfolio-img"><img src="{{asset(VariableConstants::ROOT_FOLDER.'assets/img/web_3.jpg')}}" class="img-fluid" alt=""></div>--}}
+{{--                <div class="portfolio-info">--}}
 {{--                    <h4>Card 1</h4>--}}
 {{--                    <p>Card</p>--}}
-               </div>
-            </div>
+{{--               </div>--}}
+{{--            </div>--}}
         </div>
 
     </div>
