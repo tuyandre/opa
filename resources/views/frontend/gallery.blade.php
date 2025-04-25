@@ -1,7 +1,7 @@
 @php use App\Constants\VariableConstants; @endphp
 @extends('frontend.layout.master')
 @section('hero')
-    <section id="hero" class="d-flex align-items-center" style="height: 40vh !important;">
+    <section id="hero_about_us" class="d-flex align-items-center" style="height: 40vh !important;">
 
         <div class="container">
             <div class="row">

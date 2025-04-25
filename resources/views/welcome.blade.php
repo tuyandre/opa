@@ -8,13 +8,10 @@
 
 
     @include('frontend.components.trending')
+
+    @include('frontend.components.performance')
+    
     @include('frontend.components.aboutus')
-
-
-    <!-- ======= Services Section ======= -->
-{{--    @include('frontend.components.services')--}}
-    <!-- End Services Section -->
-    <!-- End Contact Section -->
 
 {{--    @include('frontend.components.contactus')--}}
 

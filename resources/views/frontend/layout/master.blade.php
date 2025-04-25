@@ -83,6 +83,7 @@ $ROOT_FOLDER =$main_url.VariableConstants::ROOT_FOLDER;
 
 <!-- Template Main JS File -->
 <script src="{{asset($ROOT_FOLDER.'assets/js/main.js')}}"></script>
+<script src="{{asset($ROOT_FOLDER.'assets/js/counter.js')}}"></script>
 
 
 {{--<script src="{{asset($ROOT_FOLDER.'/backend/assets/DataTables/jQuery-3.7.0/jquery-3.7.0.js')}}"></script>--}}
