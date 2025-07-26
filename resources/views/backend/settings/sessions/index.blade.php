@@ -68,6 +68,7 @@
                                                     <a class="dropdown-item" href="{{route('admin.training.session.students', $training_session->id)}}">Students</a>
                                                     @if($training_session->status == "Active")
                                                         <a class="dropdown-item close_btn" href="{{route('admin.training.session.change_status', [$training_session->id, 'Inactive'])}}">Close</a>
+                                                        <a class="dropdown-item update_btn" href="{{route('admin.training.session.edit', [$training_session->id])}}">Edit</a>
                                                     @else
                                                         <a class="dropdown-item close_btn" href="{{route('admin.training.session.change_status', [$training_session->id, 'Active'])}}">Activate</a>
                                                     @endif
@@ -132,11 +133,15 @@
                                 <label for="end_hour">End Hour</label>
                                 <input type="time"  name="end_time" id="end_hour" class="form-control" required />
                             </div>
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-4">
+                                <label for="days">Required Student</label>
+                                <input type="number"  name="maximum_students" id="maximum_students" class="form-control" value="5" required />
+                            </div>
+                            <div class="form-group col-md-4">
                                 <label for="days">Working Days</label>
                                 <input type="text"  name="days" id="days" class="form-control" required />
                             </div>
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-4">
                                 <label for="description">Description</label>
                                 <textarea type="text"  name="description" id="description" class="form-control" required > </textarea>
                             </div>
