@@ -22,7 +22,8 @@ class FrontRegistrationController extends Controller
         $training_sessions = TrainingSession::leftJoin('registration_students', 'training_sessions.id', '=', 'registration_students.training_session_id')
             ->where('training_sessions.status', 'Active')
             ->select('training_sessions.*', DB::raw('COUNT(registration_students.id) as total_students'))
-            ->groupBy('training_sessions.id')
+            ->groupBy('training_sessions.id','training_sessions.session_title')
+            ->having(DB::raw('COUNT(registration_students.id)'), '<', DB::raw('training_sessions.maximum_students'))
             ->orderBy('training_sessions.start_date', 'asc')
             ->get();
         //check if registration is open
