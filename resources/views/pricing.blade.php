@@ -111,9 +111,11 @@
                     <p>– Upon negotiation, the instalments payment is acceptable but not exceeding the 3rd week of the training period.  </p>
                     <p>All the amounts should be paid to the company account number: 4002201067147 RWF in Equity Bank or USD Account Number: 4012201079486 registered for Office of Professional Auditors Ltd. Or MTN MOMO CODE: 012300</p>
                 </div>
+                @if($is_registration_open)
                 <div class="col-lg-3 cta-btn-container text-center">
                     <a class="cta-btn align-middle" href="{{route('frontend.registration.training')}}">Apply Now</a>
                 </div>
+                @endif
             </div>
 
         </div>

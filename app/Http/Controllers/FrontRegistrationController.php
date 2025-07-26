@@ -17,19 +17,48 @@ class FrontRegistrationController extends Controller
     //get pricing page
     public function pricing()
     {
+        $is_registration_open = false;
         //select all training sessions
-        $training_sessions = TrainingSession::where('status', 'Active')->get();
+        $training_sessions = TrainingSession::leftJoin('registration_students', 'training_sessions.id', '=', 'registration_students.training_session_id')
+            ->where('training_sessions.status', 'Active')
+            ->select('training_sessions.*', DB::raw('COUNT(registration_students.id) as total_students'))
+            ->groupBy('training_sessions.id')
+            ->orderBy('training_sessions.start_date', 'asc')
+            ->get();
+        //check if registration is open
+        if ($training_sessions->count() > 0) {
+            $is_registration_open = true;
+            //check if any session is active
+            foreach ($training_sessions as $session) {
+                \Log::info('Session total students ' . $session->total_students);
+                if ($session->status == 'Active' && $session->maximum_students > $session->total_students) {
+                    $is_registration_open = true;
+                    break;
+                } else {
+                    $is_registration_open = false;
+                }
+            }
+        }
         //all services
         $services = TrainingService::where('is_active', true)->get();
         //return view
-        return view('pricing', compact('training_sessions', 'services'));
+        return view('pricing', compact('training_sessions', 'services','is_registration_open'));
     }
 
     //get register page
     public function registration_training()
     {
         $services = TrainingService::where('is_active', true)->get();
-        $sessions=TrainingSession::where('is_active',true)->get();
+        $sessions = TrainingSession::leftJoin('registration_students', 'training_sessions.id', '=', 'registration_students.training_session_id')
+            ->where('training_sessions.is_active', 1)
+            ->select('training_sessions.*', DB::raw('COUNT(registration_students.id) as total_students'))
+            ->groupBy('training_sessions.id') // Include ordered columns too
+            ->having(DB::raw('COUNT(registration_students.id)'), '<', DB::raw('training_sessions.maximum_students'))
+            ->orderBy('training_sessions.start_date', 'asc')
+            ->get();
+        //check if any session is active
+        \Log::info('Sessions count: ' . $sessions->count());
+
         return view('training', compact( 'services','sessions'));
     }
 

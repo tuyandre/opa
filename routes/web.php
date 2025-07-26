@@ -65,6 +65,8 @@ Route::group(['prefix' => 'dashboard','middleware' => ['auth']], function () {
     Route::post('/training-session/store', [App\Http\Controllers\TrainingSessionController::class, 'store'])->name('admin.training.session.store');
     Route::get('/training-session/delete/{id}', [App\Http\Controllers\TrainingSessionController::class, 'destroy'])->name('admin.training.session.delete');
     Route::get('/training-session/change_status/{id}/{status}', [App\Http\Controllers\TrainingSessionController::class, 'updateStatus'])->name('admin.training.session.change_status');
+    Route::get('/training-session/custom_edit/{id}', [App\Http\Controllers\TrainingSessionController::class, 'edit'])->name('admin.training.session.edit');
+    Route::post('/training-session/custom-update', [App\Http\Controllers\TrainingSessionController::class, 'customUpdate'])->name('admin.training.session.update');
     //get students by session id
     Route::get('/training-session/students/{id}', [App\Http\Controllers\TrainingSessionController::class, 'getStudentsBySessionId'])->name('admin.training.session.students');
 

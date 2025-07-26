@@ -26,8 +26,7 @@ class TrainingSessionController extends Controller
             'days' => 'required',
             'start_time' => 'required',
             'end_time' => 'required',
-
-            'description' => 'required'
+            'maximum_students' => 'required'
         ]);
         $randomString = Str::random(8);
         //count days between start date and end date
@@ -49,8 +48,10 @@ class TrainingSessionController extends Controller
         $training_session->days = $request->days;
         $training_session->start_time = $request->start_time;
         $training_session->end_time = $request->end_time;
-        $training_session->description = $request->description;
+        $training_session->maximum_students = $request->maximum_students;
+        $training_session->description = $request->description?? '';
         $training_session->status = "Active";
+        $training_session->is_active = true;
         $training_session->save();
         return redirect()->back()->with('success', 'Training session added successfully.');
     }
@@ -86,5 +87,41 @@ class TrainingSessionController extends Controller
         $training_session = TrainingSession::find($id);
         $students = $training_session->students;
         return view('backend.settings.sessions.session_students', compact('students', 'training_session'));
+    }
+    //edit training session
+    public function edit($id)
+    {
+        $training_session = TrainingSession::find($id);
+        return view('backend.settings.sessions.edit', compact('training_session'));
+    }
+    //custom update
+    public function customUpdate(Request $request)
+    {
+        $request->validate([
+            'session_title' => 'required',
+            'price' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required',
+            'days' => 'required',
+            'start_time' => 'required',
+            'end_time' => 'required',
+            'maximum_students' => 'required'
+        ]);
+        $training_session = TrainingSession::find($request->id);
+        $training_session->session_title = $request->session_title;
+        $training_session->price = $request->price;
+        $training_session->duration = $request->days.' days';
+        $training_session->start_date = $request->start_date;
+        $training_session->end_date = $request->end_date;
+        $training_session->days = $request->days;
+        $training_session->start_time = $request->start_time;
+        $training_session->end_time = $request->end_time;
+        $training_session->maximum_students = $request->maximum_students;
+        $training_session->description = $request->description?? '';
+        $training_session->status = "Active";
+        $training_session->is_active = true;
+        $training_session->save();
+        //redirect to indexreturn redirect()->back()->with('success', 'Training session updated successfully.');
+        return redirect()->route('admin.training.session')->with('success', 'Training session updated successfully.');
     }
 }
