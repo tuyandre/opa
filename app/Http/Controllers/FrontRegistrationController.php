@@ -21,9 +21,23 @@ class FrontRegistrationController extends Controller
         //select all training sessions
         $training_sessions = TrainingSession::leftJoin('registration_students', 'training_sessions.id', '=', 'registration_students.training_session_id')
             ->where('training_sessions.status', 'Active')
-            ->select('training_sessions.*', DB::raw('COUNT(registration_students.id) as total_students'))
-            ->groupBy('training_sessions.id','training_sessions.session_title')
-            ->having(DB::raw('COUNT(registration_students.id)'), '<', DB::raw('training_sessions.maximum_students'))
+            ->select(
+                'training_sessions.id',
+                'training_sessions.session_title',
+                'training_sessions.start_date',
+                'training_sessions.end_date',
+                'training_sessions.status',
+                'training_sessions.maximum_students',
+                DB::raw('COUNT(registration_students.id) as total_students')
+            )
+            ->groupBy(
+                'training_sessions.id',
+                'training_sessions.session_title',
+                'training_sessions.start_date',
+                'training_sessions.end_date',
+                'training_sessions.status',
+                'training_sessions.maximum_students'
+            )->having(DB::raw('COUNT(registration_students.id)'), '<', DB::raw('training_sessions.maximum_students'))
             ->orderBy('training_sessions.start_date', 'asc')
             ->get();
         //check if registration is open
@@ -52,9 +66,23 @@ class FrontRegistrationController extends Controller
         $services = TrainingService::where('is_active', true)->get();
         $sessions = TrainingSession::leftJoin('registration_students', 'training_sessions.id', '=', 'registration_students.training_session_id')
             ->where('training_sessions.is_active', 1)
-            ->select('training_sessions.*', DB::raw('COUNT(registration_students.id) as total_students'))
-            ->groupBy('training_sessions.id') // Include ordered columns too
-            ->having(DB::raw('COUNT(registration_students.id)'), '<', DB::raw('training_sessions.maximum_students'))
+            ->select(
+                'training_sessions.id',
+                'training_sessions.session_title',
+                'training_sessions.start_date',
+                'training_sessions.end_date',
+                'training_sessions.price',
+                'training_sessions.maximum_students',
+                DB::raw('COUNT(registration_students.id) as total_students')
+            )
+            ->groupBy(
+                'training_sessions.id',
+                'training_sessions.session_title',
+                'training_sessions.start_date',
+                'training_sessions.end_date',
+                'training_sessions.price',
+                'training_sessions.maximum_students'
+            )->having(DB::raw('COUNT(registration_students.id)'), '<', DB::raw('training_sessions.maximum_students'))
             ->orderBy('training_sessions.start_date', 'asc')
             ->get();
         //check if any session is active
