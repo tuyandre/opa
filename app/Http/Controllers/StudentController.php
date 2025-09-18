@@ -56,14 +56,14 @@ class StudentController extends Controller
             );
             if ($request->status=='Accepted') {
                 \Mail::send('emails.reply_email', $data, function ($message) use ($data) {
-                    $message->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
                     $message->to($data['email'], $data['name']);
+                    $message->from('' . env('MAIL_FROM_ADDRESS') . '', env('MAIL_FROM_NAME'));
                     $message->subject('Reply to your registration');
                 });
             }else{
                 \Mail::send('emails.reply_email2', $data, function ($message) use ($data) {
-                    $message->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
                     $message->to($data['email'], $data['name']);
+                    $message->from('' . env('MAIL_FROM_ADDRESS') . '', env('MAIL_FROM_NAME'));
                     $message->subject('Reply to your registration');
                 });
             }
