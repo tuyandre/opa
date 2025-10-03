@@ -233,25 +233,22 @@ $ROOT_FOLDER =$main_url.VariableConstants::ROOT_FOLDER;
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
         // Display the result
-        document.getElementById("days").innerHTML = days.toString().padStart(2, '0') ;
-        document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
-        document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
-        document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
+        // document.getElementById("days").innerHTML = days.toString().padStart(2, '0') ;
+        // document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
+        // document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
+        // document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
 
+        document.getElementById("countdowns").innerHTML =
+            days + "days,  " + hours + "hours,  " + minutes + "min,  " + seconds + "sec Left ";
         // If the countdown is finished, write some text
         if (distance < 0) {
             clearInterval(x);
-            document.getElementById("days").innerHTML = "00";
-            document.getElementById("hours").innerHTML = "00";
-            document.getElementById("minutes").innerHTML = "00";
-            document.getElementById("seconds").innerHTML = "00";
-            //remove apply now button and whole div
-            const ctaDiv = document.querySelector('.counter_div');
-            if (ctaDiv) {
-                //add hidden class
-                ctaDiv.style.display = 'none';
-            }
+
+            //hide countdown bar
+            document.getElementById("countdown-bar").style.display = "none";
+            document.getElementById("countdowns").innerHTML = "EXPIRED";
         }
+
     }, 1000);
 </script>
 </body>
