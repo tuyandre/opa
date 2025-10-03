@@ -1,5 +1,45 @@
 @php use App\Constants\VariableConstants; @endphp
 @extends('frontend.layout.master')
+<style>
+    /* Keep a classic serif appearance similar to the screenshot */
+    body { font-family: Georgia, 'Times New Roman', serif; color: #111; }
+    .label { font-weight: 700; }
+    .value { font-weight: 500; margin-left: 6px; }
+
+
+    /* Card styling */
+    .brochure-card { border: none; }
+    .section-title { font-size: 1.05rem; font-weight: 700; margin-bottom: .6rem; }
+
+
+    /* Weekly overview table subtle look */
+    .overview .table { margin-bottom: 0; }
+    .overview .week { padding: .45rem 0; }
+
+    .apply-button{
+        background-color: #ff3c3c !important;
+        border-radius: 50px;
+        padding: 0.7rem 1.5rem;
+        color: white;
+        font-weight: bold;
+        border: none;
+        text-decoration: none;
+
+    }
+
+
+    /* Fine typography adjustments */
+    h1, h2, h3, h4 { font-family: Georgia, 'Times New Roman', serif; }
+    ul li{
+        list-style-type: none;
+    }
+
+
+    /* Responsive tweaks */
+    @media (max-width: 576px) {
+        .two-col .col-sm-6 { margin-bottom: .6rem; }
+    }
+</style>
 @section('hero')
     <section id="hero" class="d-flex align-items-center" style="height: 40vh !important;">
 
@@ -24,101 +64,130 @@
 
             <div class="row">
 
-                <div class="col-lg-7 d-flex flex-column justify-content-center align-items-stretch  order-2 order-lg-1">
+                <div class="col-lg-12 d-flex flex-column justify-content-center align-items-stretch  order-1 order-lg-1">
 
                     <div class="content">
-                        <h3><strong>Be a professional trainee in OPA </strong></h3>
+                        <h3><strong>15-Day OPA Accounting Training Program </strong></h3>
                         <p>
-                            With the support of certified professional accountants, OPA offer a variety of training options to enhance the efficiency in the organization. We are committed to efficiency, compliance,
-                            reliability and suitability of the accounting information which leads to the profitability or the organization as a whole.
-                        </p>
+                            This 15-days intensive training program is tailored for fresh graduates and individuals aiming to build strong accounting skills.
+                            The course focuses on three core areas: Tax Declaration, QuickBooks, and Practical Accounting. By combining theory with hands-on exercises,
+                            participants will gain the confidence and practical skills required to thrive in an accounting role in Rwanda. Each session is designed to progressively develop technical expertise,
+                            ensure compliance with local regulations, and provide exposure to real-life accounting practices</p>
                     </div>
+                    <!-- Basic info lines -->
                     <div class="content">
-                        <h2 ><strong>Training offered.</strong></h2>
+                    <div class="row two-col mb-3">
+                        <div class="col-sm-12">
+                            <div><span class="label">Location:</span><span class="value">OPA Training Office, Kicukiro Ziniya Near World Food Program</span></div>
+                            <div class="mt-1"><span class="label">Duration:</span><span class="value">15 Days</span></div>
+                            <div class="mt-1"><span class="label">Days Per Week:</span><span class="value">2 Days, 6 Hours Per Week</span></div>
+
+                            <div><span class="label">Hours per Day:</span><span class="value">3 hours</span></div>
+                            <div class="mt-1"><span class="label">Target Audience:</span><span class="value">New recruits, junior accountants, or upskilling staff</span></div>
+                        </div>
+                    </div>
+                    <hr>
+
+                        <!-- Weekly Overview -->
+                        <div class="overview mb-3">
+                            <div class="section-title"><i class="bi bi-journal-text me-2"></i>Weekly Overview</div>
+
+
+                            <div class="table-responsive">
+                                <table class="table table-borderless">
+                                    <thead>
+                                    <tr>
+                                        <th style="width:18%;">Week</th>
+                                        <th>Focus Area</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td class="week">Week 1</td>
+                                        <td>Practical Accounting Fundamentals</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="week">Week 2</td>
+                                        <td>QuickBooks (Desktop or Online)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="week">Week 3</td>
+                                        <td>Rwandan Tax Declaration &amp; Compliance</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                         <hr>
-                        <h4><strong>Training in tax declaration </strong></h4>
-                        <p>
-                            The trainee will get hands on experience and knowledge in declaration of taxes applicable in Rwanda,
-                            tax planning mechanisms available to the institution in regards to the tax laws,
-                            and the ability to maintain the tax records which useful in different purposes.
-                        </p>
-                        <h4><strong>Training in general practical accounting.  </strong></h4>
-                        <p>
-                            According to <strong>FINPROV</strong>, “Accounting is a language of the business”. We need the proper accounting records to better
-                            communicate the financial performance and the financial position of the business. For the accounting to portray the true and fair
-                            view image of the business, it should be prepared by the people who understand the accounting process. In OPA,
-                            we help the trainees understand the process of accounting which includes identifying, classing, recording, summarizing,
-                            and reporting the financial data so that he/she can be able to communicate the business image.
-                        </p>
-                        <h4><strong>Training in Excel and accounting software (QuickBooks).</strong></h4>
-                        <p>
-                            In Rwanda, a business with annual turnover exceeding 20 Million is obliged to keep books of accounts.
-                            You can’t manage the books of accounts without the knowledge of about excel and accounting software.
-                            OPA is the best place where you will meet the professionals to help you understand the whole process.
-                        </p>
-                        <p>The training is planned in the way that everyone is included. If you are working and ends to the work at 5Pm,
-                            there is a session for you<strong> Monday to Friday from 5:30Pm to 8:30Pm </strong>or just <strong> Saturday 8:30Am to 12:30Am.</strong>
-                            So, don’t hesitate to reach to us </p>
+
+                        <!-- Detailed Training Plan -->
+                        <div class="detailed-plan">
+                            <div class="section-title">Detailed Training Plan</div>
+
+
+                            <h5 class="mt-3">Phase 1: Practical Accounting Knowledge (Days 1–5)</h5>
+                            <p class="mb-1"><strong>Goal:</strong> Build a strong foundation in accounting principles, the accounting cycle, financial statements, and real-world application.</p>
+                            <ul>
+                                <li>Day 1: Introduction to accounting principles &amp; double-entry bookkeeping.</li>
+                                <li>Day 2: Chart of accounts and journals.</li>
+                                <li>Day 3: Ledgers, trial balance, and adjustments.</li>
+                                <li>Day 4: Preparation of financial statements (income statement, balance sheet).</li>
+                                <li>Day 5: Practical exercises and real-world case study.</li>
+                            </ul>
+
+
+                            <h5 class="mt-3">Phase 2: QuickBooks Training (Days 6–10)</h5>
+                            <p class="mb-1"><strong>Goal:</strong> Equip trainees with the ability to use QuickBooks for daily accounting tasks, financial reporting, and system set up and customization.</p>
+                            <ul>
+                                <li>Day 6: Introduction to QuickBooks, charts of accounts, creating items, and use of journals entry.</li>
+                                <li>Day 7: Customers, Sales, and Receivables.</li>
+                                <li>Day 8: Suppliers, Expenses, and Payables.</li>
+                                <li>Day 9: Banking, Reconciliations, and Payroll Basics.</li>
+                                <li>Day 10: Financial Reporting & Customization.</li>
+                            </ul>
+
+
+                            <h5 class="mt-3">Phase 3: Rwanda Tax Compliance and Declarations (Days 11–15)</h5>
+                            <p class="mb-1"><strong>Goal:</strong> Understand Rwanda’s tax system, how to prepare and submit tax declarations, and ensure compliance using real data.</p>
+                            <ul>
+                                <li>Day 11: Overview of Rwanda’s Taxes, types and overview.</li>
+                                <li>Day 12: Value Added Tax (VAT).</li>
+                                <li>Day 13: Pay As You Earn (PAYE) and Withholding Tax.</li>
+                                <li>Day 14: Corporate Income Tax (CIT), Personal Income Tax (PIT) and IQP.</li>
+                                <li style="color: #e50031"> <strong>Day 15: Practical exercises using real data and final assessment</strong></li>
+                            </ul>
+                            <!-- Trainee Support Materials -->
+                            <h5 class="mt-4">Trainee Support Materials</h5>
+                            <ul>
+                                <li><i class="ri-check-double-line"></i> Computers with QuickBooks installed (Desktop version)</li>
+                                <li><i class="ri-check-double-line"></i> Internet access all the time</li>
+                                <li><i class="ri-check-double-line"></i> Sample business documents (invoices, receipts, payroll sheets)</li>
+                                <li><i class="ri-check-double-line"></i> Handouts: Rwanda tax guide, QuickBooks short manual, accounting cheat sheets</li>
+                            </ul>
+
+                            <!-- Certification -->
+                            <h5 class="mt-4"><i class="bi bi-award-fill me-2 text-primary"></i>Certification</h5>
+                            <p>Participants who complete all sessions and pass the final assessment with 80% minimum pass receive a <strong>Certificate of Completion in Practical Accounting &amp; Tax Compliance (Rwanda).</strong></p>
+                        </div>
+                        <hr>
+                        <div class="text-center mb-3">
+                            <a class="btn btn-primary apply-button" href="{{route('frontend.registration.training')}}">Apply Now</a>
+
+                        </div>
 
                     </div>
 
                 </div>
+                @if($is_registration_open)
+{{--                    <div class="col-lg-2">--}}
+{{--                        <a class="btn  apply-button" href="{{route('frontend.registration.training')}}">Apply Now</a>--}}
+{{--                    </div>--}}
+                @endif
 
-{{--                <div class="col-lg-5 align-items-stretch order-1 order-lg-2 img pricing-image-div" style='background-image: url("assets/img/OPA.jpg"); border-radius: 16%;' data-aos="zoom-in" data-aos-delay="120">&nbsp;</div>--}}
-                <div class="col-lg-5 align-items-stretch order-1 order-lg-2 img pricing-image-div" data-aos="zoom-in" data-aos-delay="120">&nbsp;<div>
-                        <img src="{{asset(VariableConstants::ROOT_FOLDER.'assets/img/OPA.jpg')}}">
-                    </div>
             </div>
 
         </div>
     </section><!-- End Why Us Section -->
-    <section id="about" class="about">
-        <div class="container" data-aos="fade-up">
 
-            <div class="row content">
-                <div class="col-lg-8">
-                    <div class="text-left">
-                        <h3>Admission Criteria</h3>
-                    </div>
-                    <ul>
-                        <li><i class="ri-check-double-line"></i> Prior accounting and business knowledge</li>
-                        <li><i class="ri-check-double-line"></i> Have completed university studies</li>
-                        <li><i class="ri-check-double-line"></i> Strong interest in business, accounting and taxation</li>
-                        <li><i class="ri-check-double-line"></i> English skills</li>
-                        <li><i class="ri-check-double-line"></i> Advance payment and committed to pay full amount before completion of the program</li>
-                        <li><i class="ri-check-double-line"></i> Valid ID/Passport</li>
-                        <li><i class="ri-check-double-line"></i> Committed to attend every time per the plan time table</li>
-                    </ul>
-                </div>
-            </div>
-
-        </div>
-    </section><!-- End About Us Section -->
-
-
-    <!-- ======= Cta Section ======= -->
-    <section id="cta" class="cta">
-        <div class="container" data-aos="zoom-in">
-
-            <div class="row">
-                <div class="col-lg-9 text-center text-lg-start">
-                    <h3>Training Fees</h3>
-                    <p>– For a period of 1 month and half (1.5Months), the training fee is 200,000 RWF inclusive of VAT payable in
-                        advance prior to joining the training. This fee covers the access to the training space and materials,
-                        all the program support, internet access.<br>
-                        <span style="color: yellow"><strong>Note: </strong>A trainee will bring his or her own laptop. We offer notebook and pens free of charges</span></p>
-                    <p>– The registration is free of charge. If you see someone asking for registration fees, you are advised to report the case immediately to OPA to avoid any. </p>
-                    <p>– Upon negotiation, the instalments payment is acceptable but not exceeding the 3rd week of the training period.  </p>
-                    <p>All the amounts should be paid to the company account number: 4002201067147 RWF in Equity Bank or USD Account Number: 4012201079486 registered for Office of Professional Auditors Ltd. Or MTN MOMO CODE: 012300</p>
-                </div>
-                @if($is_registration_open)
-                <div class="col-lg-3 cta-btn-container text-center">
-                    <a class="cta-btn align-middle" href="{{route('frontend.registration.training')}}">Apply Now</a>
-                </div>
-                @endif
-            </div>
-
-        </div>
-    </section><!-- End Cta Section -->
 
 @endsection

@@ -427,7 +427,7 @@ h6 {
   width: 100%;
   height: 80vh;
   /* background: #146c77; */
-  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
                 url('/assets/img/web_2.jpg') no-repeat center center;
     background-size: cover;
     position: relative;
@@ -564,7 +564,7 @@ h6 {
 # Sections General
 --------------------------------------------------------------*/
 section {
-  padding: 20px 0;
+  padding: 10px 0;
   overflow: hidden;
 }
 
@@ -1091,6 +1091,21 @@ section {
 .portfolio .portfolio-item:hover .portfolio-info {
   opacity: 1;
 }
+
+.program-heading {
+    cursor: pointer;
+    display: inline-block;
+    margin: 10px 5px;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1;
+    color: #444444;
+    transition: all 0.3s;
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-family: "Poppins", sans-serif;
+}
+
 
 /*--------------------------------------------------------------
 # Portfolio Details
