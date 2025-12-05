@@ -100,7 +100,7 @@
                         </div>
 
                     <div class="form-group col-md-6">
-                        <label for="agreement"> <strong>I understand that I will have to pay  200,000.00 RWf before enrollment for the training of my choice and
+                        <label for="agreement"> <strong>I understand that I will have to pay  300,000.00 RWf before enrollment for the training of my choice and
                                 Two consecutive absence with no clear justification leads to automatic dismissal from the training program. </strong> </label>
                         <input type="checkbox" value="1" name="agreement" id="agreement">
                     </div>
