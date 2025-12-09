@@ -89,7 +89,7 @@
                 <div class="program-card">
                     <div class="text-center mb-3 program-card-header" >
                     <p> <strong>DAY </strong> <br>  <span>PROGRAM</span></p>
-                    <p class="program-price">200,000 / Program</p>
+                    <p class="program-price">300,000 / Program</p>
                     </div>
                     <ul class="program-features">
                         <li>Practical accounting</li>
@@ -107,7 +107,7 @@
                 <div class="program-card">
                     <div class="text-center mb-3 program-card-header" >
                         <p> <strong>EVENING </strong> <br>  <span>PROGRAM</span></p>
-                        <p class="program-price">200,000 / Program</p>
+                        <p class="program-price">300,000 / Program</p>
                     </div>
 
                     <ul class="program-features">
@@ -126,7 +126,7 @@
                 <div class="program-card">
                     <div class="text-center mb-3 program-card-header" >
                         <p> <strong>SATURDAY </strong> <br>  <span>PROGRAM</span></p>
-                        <p class="program-price">200,000 / Program</p>
+                        <p class="program-price">300,000 / Program</p>
                     </div>
                     <ul class="program-features">
                         <li>Practical accounting</li>
