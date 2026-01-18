@@ -35,7 +35,8 @@
                                 <div class="portfolio-description">
                                     <h2>{{$trend->title}}</h2>
                                     <p>
-                                        {{$trend->description}}</p>
+                                        {!! nl2br(e($trend->description)) !!}
+                                    </p>
 
                                     {{--                    <a class="getstarted scrollto btn" style="background: black;color: white" href="{{route('frontend.trending.detail')}}">Read more</a>--}}
                                 </div>
