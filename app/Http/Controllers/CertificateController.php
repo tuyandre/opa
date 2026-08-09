@@ -72,6 +72,11 @@ class CertificateController extends Controller
         $generated = 0;
         $skipped = 0;
 
+        $certificatesPath = public_path('uploads/certificates');
+        if (!is_dir($certificatesPath)) {
+            mkdir($certificatesPath, 0755, true);
+        }
+
         foreach ($request->student_ids as $studentId) {
             $student = RegistrationStudent::find($studentId);
             if (!$student || (int) $student->training_session_id !== (int) $session->id) {
