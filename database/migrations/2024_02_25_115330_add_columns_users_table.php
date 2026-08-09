@@ -12,10 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->unsignedBigInteger('student_id')->nullable()->after('id')->comment('Student ID');
-            $table->unsignedBigInteger('role_id')->nullable()->after('id')->comment('Role ID');
-            $table->foreign('student_id')->references('id')->on('registration_students')->onUpdate('cascade')->onDelete('set null');
-            $table->foreign('role_id')->references('id')->on('roles')->onUpdate('cascade')->onDelete('set null');
+            if (!Schema::hasColumn('users', 'student_id')) {
+                $table->unsignedBigInteger('student_id')->nullable()->after('id')->comment('Student ID');
+                $table->foreign('student_id')->references('id')->on('registration_students')->onUpdate('cascade')->onDelete('set null');
+            }
+            if (!Schema::hasColumn('users', 'role_id')) {
+                $table->unsignedBigInteger('role_id')->nullable()->after('id')->comment('Role ID');
+                $table->foreign('role_id')->references('id')->on('roles')->onUpdate('cascade')->onDelete('set null');
+            }
         });
     }
 
@@ -25,10 +29,14 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropForeign(['student_id']);
-            $table->dropForeign(['role_id']);
-            $table->dropColumn('student_id');
-            $table->dropColumn('role_id');
+            if (Schema::hasColumn('users', 'student_id')) {
+                $table->dropForeign(['student_id']);
+                $table->dropColumn('student_id');
+            }
+            if (Schema::hasColumn('users', 'role_id')) {
+                $table->dropForeign(['role_id']);
+                $table->dropColumn('role_id');
+            }
         });
     }
 };

@@ -12,7 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('training_sessions', function (Blueprint $table) {
-            $table->integer('maximum_students')->default(0)->after('status');
+            if (!Schema::hasColumn('training_sessions', 'maximum_students')) {
+                $table->integer('maximum_students')->default(0)->after('status');
+            }
         });
     }
 
@@ -22,7 +24,9 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('training_sessions', function (Blueprint $table) {
-            $table->dropColumn('maximum_students');
+            if (Schema::hasColumn('training_sessions', 'maximum_students')) {
+                $table->dropColumn('maximum_students');
+            }
         });
     }
 };
