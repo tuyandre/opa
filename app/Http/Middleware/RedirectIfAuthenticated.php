@@ -21,8 +21,10 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                //check if user is admin
-                if (Auth::user()->is_super_admin) {
+                // Anyone who isn't an actual student (super admins and staff
+                // accounts alike) lands on the dashboard; only real students
+                // get redirected to the student materials page.
+                if (is_null(Auth::user()->student_id)) {
                     return redirect(RouteServiceProvider::HOME);
                 }else {
                     return redirect(RouteServiceProvider::STUDENT);

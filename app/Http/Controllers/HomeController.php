@@ -23,11 +23,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if (auth()->user()->is_super_admin){
+        // Anyone who isn't an actual student (super admins and staff accounts
+        // alike) lands on the dashboard; only real students get redirected.
+        if (is_null(auth()->user()->student_id)){
             return view('home');
         }else{
             return redirect()->route('student.training.materials.index');
-//            return view('backend.students.training_materials');
         }
     }
 }

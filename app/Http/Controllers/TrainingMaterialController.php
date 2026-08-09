@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\TrainingMaterial;
+use App\Models\TrainingSession;
 use Illuminate\Http\Request;
 
 class TrainingMaterialController extends Controller
@@ -15,8 +16,9 @@ class TrainingMaterialController extends Controller
 
     public function materials()
     {
-        $materials = TrainingMaterial::where('status','Active')->get();
-        return view('backend.materials.trainings', compact('materials'));
+        $materials = TrainingMaterial::with('session')->where('status','Active')->get();
+        $sessions = TrainingSession::where('status', 'Active')->get();
+        return view('backend.materials.trainings', compact('materials', 'sessions'));
     }
 
 
@@ -26,7 +28,8 @@ class TrainingMaterialController extends Controller
         $request->validate([
             'title' => 'required',
             'description' => 'required',
-            'file' => 'required|mimes:pdf,doc,docx'
+            'training_session_id' => 'nullable|exists:training_sessions,id',
+            'file' => 'required|mimes:pdf,doc,docx,png,jpg,jpeg,mp4,mov,avi,wmv,webm,mkv|max:204800'
         ]);
 
         $file = $request->file('file');
@@ -38,6 +41,7 @@ class TrainingMaterialController extends Controller
         $material->description = $request->description;
         $material->status = 'Active';
         $material->file = $file_name;
+        $material->training_session_id = $request->training_session_id;
         $material->save();
         return redirect()->back()->with('success', 'Material added successfully');
     }

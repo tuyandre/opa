@@ -49,13 +49,36 @@
 </style>
 
 
+<?php $upcomingSession = \App\Models\TrainingSession::nextOpenForRegistration(); ?>
 <header id="header" class="fixed-top" style="margin-top: 0 !important; padding-top: 0 !important; ">
 
-    <div id="countdown-bar" class="position-relative text-center mb-3">
-
-        <h4 class="mb-0" id="countdowns"></h4>
-        <a href="{{url("/training-registration")}}" class="btn btn-primary btn-sm btn-animate btn-pulse position-absolute end-0 top-50 translate-middle-y">Apply Now</a>
-    </div>
+    @if($upcomingSession)
+        <div id="countdown-bar" class="position-relative text-center mb-3">
+            <h4 class="mb-0" id="countdowns">Registration open for {{ $upcomingSession->session_title }} &mdash; starts {{ \Carbon\Carbon::parse($upcomingSession->start_date)->format('M j, Y') }}</h4>
+            <a href="{{url("/training-registration")}}" class="btn btn-primary btn-sm btn-animate btn-pulse position-absolute end-0 top-50 translate-middle-y">Apply Now</a>
+        </div>
+        <script>
+            (function () {
+                // The banner adds extra height to the fixed header; every page's hero
+                // section has its own top offset tuned for the header WITHOUT the banner,
+                // so push the page content down by exactly the banner's own height.
+                function adjustForBanner() {
+                    var bar = document.getElementById('countdown-bar');
+                    if (bar) {
+                        document.body.style.marginTop = bar.offsetHeight + 'px';
+                    }
+                }
+                adjustForBanner();
+                window.addEventListener('resize', adjustForBanner);
+                window.addEventListener('load', adjustForBanner);
+                // Google Fonts swap in after load and can reflow/rewrap the banner text,
+                // changing its height — recheck once the real fonts are ready too.
+                if (document.fonts && document.fonts.ready) {
+                    document.fonts.ready.then(adjustForBanner);
+                }
+            })();
+        </script>
+    @endif
 {{--    <div class="container    align-items-center counter_div" id="counter_div">--}}
 {{--        <div class="row justify-content-center">--}}
 {{--            <div class="col-md-12">--}}

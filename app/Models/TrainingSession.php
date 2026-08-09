@@ -14,4 +14,19 @@ class TrainingSession extends Model
     {
         return $this->hasMany(RegistrationStudent::class);
     }
+
+    public function isCompleted(): bool
+    {
+        return $this->status === 'Completed';
+    }
+
+    // The earliest Active session that still has open slots, or null if none.
+    public static function nextOpenForRegistration(): ?self
+    {
+        return static::where('status', 'Active')
+            ->withCount('students')
+            ->orderBy('start_date')
+            ->get()
+            ->first(fn($session) => $session->students_count < $session->maximum_students);
+    }
 }

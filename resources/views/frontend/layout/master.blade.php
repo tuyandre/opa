@@ -21,20 +21,18 @@ $ROOT_FOLDER =$main_url.VariableConstants::ROOT_FOLDER;
     <link href="{{asset($ROOT_FOLDER.'assets/img/sivicon.png')}}" rel="icon">
     <link href="{{asset($ROOT_FOLDER.'assets/img/sivicon.png')}}" rel="apple-touch-icon">
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Google Fonts (loaded async so it doesn't block first render) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet"></noscript>
 
-    <!-- Vendor CSS Files -->
+    <!-- Vendor CSS Files (used on every page) -->
     <link href="{{asset($ROOT_FOLDER.'assets/vendor/aos/aos.css')}}" rel="stylesheet">
     <link href="{{asset($ROOT_FOLDER.'assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset($ROOT_FOLDER.'assets/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
     <link href="{{asset($ROOT_FOLDER.'assets/vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
-    <link href="{{asset($ROOT_FOLDER.'assets/vendor/glightbox/css/glightbox.min.css')}}" rel="stylesheet">
     <link href="{{asset($ROOT_FOLDER.'assets/vendor/remixicon/remixicon.css')}}" rel="stylesheet">
-    <link href="{{asset($ROOT_FOLDER.'assets/vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <!-- Template Main CSS File -->
     <link href="{{asset($ROOT_FOLDER.'assets/css/style.css')}}" rel="stylesheet">
     <style>
@@ -46,6 +44,9 @@ $ROOT_FOLDER =$main_url.VariableConstants::ROOT_FOLDER;
           color: #eb0060 !important;
       }
     </style>
+
+    <!-- Page-specific CSS (glightbox / swiper / select2 etc.), pushed only by pages that need them -->
+    @stack('styles')
 
 </head>
 
@@ -72,30 +73,28 @@ $ROOT_FOLDER =$main_url.VariableConstants::ROOT_FOLDER;
 <div id="preloader"></div>
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-<!-- Vendor JS Files -->
+<!-- Vendor JS Files (used on every page) -->
 <script src="{{asset($ROOT_FOLDER.'assets/vendor/aos/aos.js')}}"></script>
 <script src="{{asset($ROOT_FOLDER.'assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-<script src="{{asset($ROOT_FOLDER.'assets/vendor/glightbox/js/glightbox.min.js')}}"></script>
-<script src="{{asset($ROOT_FOLDER.'assets/vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>
-<script src="{{asset($ROOT_FOLDER.'assets/vendor/swiper/swiper-bundle.min.js')}}"></script>
-<script src="{{asset($ROOT_FOLDER.'assets/vendor/waypoints/noframework.waypoints.js')}}"></script>
-{{--<script src="{{asset($ROOT_FOLDER.'assets/vendor/php-email-form/validate.js')}}"></script>--}}
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<!-- Page-specific JS (glightbox / isotope / swiper / select2 etc.), pushed only by pages that need them -->
+@stack('scripts')
 
 <!-- Template Main JS File -->
 <script src="{{asset($ROOT_FOLDER.'assets/js/main.js')}}"></script>
 <script src="{{asset($ROOT_FOLDER.'assets/js/counter.js')}}"></script>
-
-
-{{--<script src="{{asset($ROOT_FOLDER.'/backend/assets/DataTables/jQuery-3.7.0/jquery-3.7.0.js')}}"></script>--}}
 
 <script type="text/javascript" src="{{ asset($ROOT_FOLDER.'vendor/jsvalidation/js/jsvalidation.min.js')}}"></script>
 <script type="text/javascript" src="{{ url($ROOT_FOLDER.'vendor/jsvalidation/js/jsvalidation.js')}}"></script>
 
 <script>
     $(document).ready(function() {
-        $('.select2').select2({
-            closeOnSelect: false
-        });
+        if ($.fn.select2) {
+            $('.select2').select2({
+                closeOnSelect: false
+            });
+        }
     });
     $(document).ready(function () {
         //validation
@@ -178,6 +177,14 @@ $ROOT_FOLDER =$main_url.VariableConstants::ROOT_FOLDER;
                     minlength: 2,
                     maxlength: 500,
                 },
+                password: {
+                    required: true,
+                    minlength: 8,
+                },
+                password_confirmation: {
+                    required: true,
+                    equalTo: "#password",
+                },
             },
             messages: {
                 name: {
@@ -205,6 +212,14 @@ $ROOT_FOLDER =$main_url.VariableConstants::ROOT_FOLDER;
                     minlength: "Your comment must be at least 10 characters long",
                     maxlength: "Your comment must be at least 500 characters long",
                 },
+                password: {
+                    required: "Please enter a password",
+                    minlength: "Your password must be at least 8 characters long",
+                },
+                password_confirmation: {
+                    required: "Please confirm your password",
+                    equalTo: "Passwords do not match",
+                },
             },
             submitHandler: function (form) {
                 form.submit();
@@ -214,43 +229,6 @@ $ROOT_FOLDER =$main_url.VariableConstants::ROOT_FOLDER;
     });
 </script>
 
-<script>
-    // Set the date we're counting down to (1 month from now)
-    const countDownDate = new Date("October 6, 2025 00:00:00").getTime();
-
-    // Update the countdown every 1 second
-    const x = setInterval(function() {
-        // Get today's date and time
-        const now = new Date().getTime();
-
-        // Find the distance between now and the countdown date
-        const distance = countDownDate - now;
-
-        // Time calculations for days, hours, minutes and seconds
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        // Display the result
-        // document.getElementById("days").innerHTML = days.toString().padStart(2, '0') ;
-        // document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
-        // document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
-        // document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
-
-        document.getElementById("countdowns").innerHTML =
-            days + "days,  " + hours + "hours,  " + minutes + "min,  " + seconds + "sec Left ";
-        // If the countdown is finished, write some text
-        if (distance < 0) {
-            clearInterval(x);
-
-            //hide countdown bar
-            document.getElementById("countdown-bar").style.display = "none";
-            document.getElementById("countdowns").innerHTML = "EXPIRED";
-        }
-
-    }, 1000);
-</script>
 </body>
 
 </html>

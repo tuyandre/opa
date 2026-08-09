@@ -24,3 +24,12 @@
 
 
 @endsection
+
+@push('styles')
+    <link href="{{asset(VariableConstants::ROOT_FOLDER.'assets/vendor/glightbox/css/glightbox.min.css')}}" rel="stylesheet">
+@endpush
+
+@push('scripts')
+    <script src="{{asset(VariableConstants::ROOT_FOLDER.'assets/vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>
+    <script src="{{asset(VariableConstants::ROOT_FOLDER.'assets/vendor/glightbox/js/glightbox.min.js')}}"></script>
+@endpush

@@ -18962,8 +18962,12 @@ a.text-dark:hover, a.text-dark:focus {
   color: #1F1F1F !important;
 }
 
-.text-muted, .preview-list .preview-item .preview-item-content p .content-category, .email-wrapper .mail-sidebar .menu-bar .profile-list-item a .user .u-designation, .email-wrapper .mail-list-container .mail-list .content .message_text, .email-wrapper .mail-list-container .mail-list .details .date {
+.preview-list .preview-item .preview-item-content p .content-category, .email-wrapper .mail-sidebar .menu-bar .profile-list-item a .user .u-designation, .email-wrapper .mail-list-container .mail-list .content .message_text, .email-wrapper .mail-list-container .mail-list .details .date {
   color: white !important;
+}
+
+.text-muted {
+  color: #6c757d !important;
 }
 
 .text-black-50 {

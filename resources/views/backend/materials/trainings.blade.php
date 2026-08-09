@@ -3,7 +3,7 @@
 @section('content')
     <?php
     use App\Constants\VariableConstants;
-    $main_url = url()->to('/').'/';
+    $main_url = url()->to('/');
     $ROOT_FOLDER =$main_url.VariableConstants::ROOT_FOLDER;
     ?>
     <div class="row">
@@ -24,6 +24,7 @@
                             <thead>
                             <tr>
                                 <th>Title</th>
+                                <th>Session</th>
                                 <th>Description</th>
                                 <th>Action</th>
                             </tr>
@@ -32,6 +33,13 @@
                             @foreach($materials as $material)
                                 <tr>
                                     <td>{{$material->title}}</td>
+                                    <td>
+                                        @if($material->session)
+                                            <span class="badge badge-primary rounded">{{$material->session->session_title}}</span>
+                                        @else
+                                            <span class="badge badge-secondary rounded">All Sessions</span>
+                                        @endif
+                                    </td>
                                     <td>{{$material->description}}</td>
                                     <td>
                                         <div class="dropdown">
@@ -42,7 +50,7 @@
                                             </button>
                                             <div class="dropdown-menu rounded" aria-labelledby="dropdownMenuButton">
                                                 <a class="dropdown-item delete_btn" href="{{route('admin.training.materials.delete', $material->id)}}">Delete</a>
-                                                <a class="dropdown-item" href="{{route('student.training.materials.download', $material->file)}}">Download</a>
+                                                <a class="dropdown-item" href="{{route('student.training.materials.view', $material->slug)}}">View</a>
 
                                             </div>
                                         </div>
@@ -84,8 +92,18 @@
                             <textarea type="text"  name="description" id="description" class="form-control" required> </textarea>
                         </div>
                         <div class="form-group">
-                            <label for="file">File</label>
+                            <label for="training_session_id">Training Session</label>
+                            <select name="training_session_id" id="training_session_id" class="form-control">
+                                <option value="">All Sessions (general material)</option>
+                                @foreach($sessions as $session)
+                                    <option value="{{$session->id}}">{{$session->session_title}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="file">File (PDF, image, document or video)</label>
                             <input type="file" name="file" id="file" class="form-control" required/>
+                            <small class="text-muted">Students can only view/watch this in-browser; it is not downloadable.</small>
                         </div>
 
                     </div>
@@ -218,3 +236,26 @@
 
 
 @endsection
+
+@push('datatables_styles')
+    <link rel="stylesheet" href="{{asset($ROOT_FOLDER.'backend/assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css')}}">
+    <link rel="stylesheet" href="{{asset($ROOT_FOLDER.'backend/assets/vendors/datatables.net-bs4/buttons.bootstrap4.css')}}">
+    <link rel="stylesheet" href="{{asset($ROOT_FOLDER.'backend/assets/vendors/datatables.net-bs4/buttons.dataTables.min.css')}}">
+    <link rel="stylesheet" href="{{asset($ROOT_FOLDER.'backend/assets/vendors/datatables.net-bs4/responsive.bootstrap4.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset($ROOT_FOLDER.'backend/assets/js/select.dataTables.min.css')}}">
+@endpush
+
+@push('datatables_scripts')
+    <script src="{{asset($ROOT_FOLDER.'backend/assets/vendors/datatables.net/jquery.dataTables.js')}}"></script>
+    <script src="{{asset($ROOT_FOLDER.'backend/assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js')}}"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
+    <script src="{{asset($ROOT_FOLDER.'backend/assets/vendors/datatables.net-bs4/buttons.dataTables.min.js')}}"></script>
+    <script src="{{asset($ROOT_FOLDER.'backend/assets/vendors/datatables.net-bs4/buttons.bootstrap4.min.js')}}"></script>
+    <script src="{{asset($ROOT_FOLDER.'backend/assets/vendors/datatables.net-responsive/dataTables.responsive.min.js')}}"></script>
+    <script src="{{asset($ROOT_FOLDER.'backend/assets/vendors/datatables.net-bs4/responsive.dataTables.min.js')}}"></script>
+    <script src="{{asset($ROOT_FOLDER.'backend/assets/vendors/datatables.net-bs4/responsive.bootstrap4.min.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
+@endpush

@@ -10,7 +10,6 @@ use App\Models\TrainingSession;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 class FrontRegistrationController extends Controller
 {
@@ -97,12 +96,13 @@ class FrontRegistrationController extends Controller
         $request->validate([
             'session_id' => 'required|exists:training_sessions,id',
             'name' => 'required',
-            'email' => 'required|email|unique:registration_students,email',
+            'email' => 'required|email|unique:registration_students,email|unique:users,email',
             'telephone' => 'required',
             'gender' => 'required',
             'education_level' => 'required',
             'position' => 'required',
-            'comment' => 'required'
+            'comment' => 'required',
+            'password' => 'required|min:8|confirmed',
         ]);
 
         //chck if email exists
@@ -137,16 +137,20 @@ class FrontRegistrationController extends Controller
                 $service_student->save();
             }
         }
-        $randomString = Str::random(10);
+        $role = Role::where('name', 'Student')->first();
+        if (!$role) {
+            $role = new Role();
+            $role->name = 'Student';
+            $role->guard_name = 'web';
+            $role->save();
+        }
 
-        $role= Role::where('name','Student')->first();
-
-        $user=new User();
-        $user->name=$request->name;
-        $user->email=$request->email;
-        $user->password=bcrypt('password');
-        $user->student_id=$registration->id;
-        $user->role_id=$role->id;
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->student_id = $registration->id;
+        $user->role_id = $role->id;
         $user->save();
 
 
