@@ -107,14 +107,73 @@ Route::group(['prefix' => 'dashboard','middleware' => ['auth']], function () {
     Route::get('/certificates', [App\Http\Controllers\CertificateController::class, 'certificates'])->name('admin.certificates.index');
     Route::get('/certificates/delete/{id}', [App\Http\Controllers\CertificateController::class, 'destroy'])->name('admin.certificates.delete');
     Route::post('/store/certificates', [App\Http\Controllers\CertificateController::class, 'storeCertificate'])->name('admin.certificates.store');
+    Route::post('/certificates/generate-bulk', [App\Http\Controllers\CertificateController::class, 'generateBulk'])->name('admin.certificates.generate-bulk');
 
+    Route::post('/store/student-materials', [App\Http\Controllers\CertificateController::class, 'storeMaterial'])->name('admin.student-materials.store');
+    Route::get('/student-materials/delete/{id}', [App\Http\Controllers\CertificateController::class, 'destroy'])->name('admin.student-materials.delete');
+
+    Route::group(['middleware' => ['permission:manage-users']], function () {
+        Route::get('/users', [App\Http\Controllers\UserController::class, 'index'])->name('admin.users.index');
+        Route::post('/users/store', [App\Http\Controllers\UserController::class, 'store'])->name('admin.users.store');
+        Route::post('/users/update/{id}', [App\Http\Controllers\UserController::class, 'update'])->name('admin.users.update');
+        Route::get('/users/delete/{id}', [App\Http\Controllers\UserController::class, 'destroy'])->name('admin.users.delete');
+
+        Route::get('/roles', [App\Http\Controllers\RoleController::class, 'index'])->name('admin.roles.index');
+        Route::post('/roles/store', [App\Http\Controllers\RoleController::class, 'store'])->name('admin.roles.store');
+        Route::post('/roles/update/{id}', [App\Http\Controllers\RoleController::class, 'update'])->name('admin.roles.update');
+        Route::get('/roles/delete/{id}', [App\Http\Controllers\RoleController::class, 'destroy'])->name('admin.roles.delete');
+    });
+
+    Route::group(['prefix' => 'clients'], function () {
+        Route::get('/', [App\Http\Controllers\ClientController::class, 'index'])->middleware('permission:view-clients')->name('admin.clients.index');
+        Route::post('/store', [App\Http\Controllers\ClientController::class, 'store'])->middleware('permission:create-clients')->name('admin.clients.store');
+        Route::get('/{slug}', [App\Http\Controllers\ClientController::class, 'show'])->middleware('permission:view-clients')->name('admin.clients.show');
+        Route::post('/update/{slug}', [App\Http\Controllers\ClientController::class, 'update'])->middleware('permission:update-clients')->name('admin.clients.update');
+        Route::post('/assign/{slug}', [App\Http\Controllers\ClientController::class, 'assign'])->middleware('permission:update-clients')->name('admin.clients.assign');
+        Route::get('/delete/{slug}', [App\Http\Controllers\ClientController::class, 'destroy'])->middleware('permission:delete-clients')->name('admin.clients.delete');
+
+        Route::post('/{slug}/documents/store', [App\Http\Controllers\ClientController::class, 'storeDocument'])->middleware('permission:upload-client-documents')->name('admin.clients.documents.store');
+        Route::get('/documents/delete/{id}', [App\Http\Controllers\ClientController::class, 'destroyDocument'])->middleware('permission:delete-client-documents')->name('admin.clients.documents.delete');
+        Route::get('/documents/download/{slug}', [App\Http\Controllers\DownloadController::class, 'downloadClientDocument'])->middleware('permission:download-client-documents')->name('admin.clients.documents.download');
+        Route::get('/documents/view/{slug}', [App\Http\Controllers\DownloadController::class, 'viewClientDocument'])->middleware('permission:view-client-documents')->name('admin.clients.documents.view');
+        Route::get('/documents/raw/{slug}', [App\Http\Controllers\DownloadController::class, 'rawClientDocument'])->middleware('permission:view-client-documents')->name('admin.clients.documents.raw');
+
+        Route::post('/{slug}/systems/store', [App\Http\Controllers\ClientSystemAccountController::class, 'store'])->middleware('permission:create-client-systems')->name('admin.clients.systems.store');
+        Route::post('/systems/update/{id}', [App\Http\Controllers\ClientSystemAccountController::class, 'update'])->middleware('permission:update-client-systems')->name('admin.clients.systems.update');
+        Route::get('/systems/delete/{id}', [App\Http\Controllers\ClientSystemAccountController::class, 'destroy'])->middleware('permission:delete-client-systems')->name('admin.clients.systems.delete');
+
+        Route::post('/{slug}/contacts/store', [App\Http\Controllers\ClientContactController::class, 'store'])->middleware('permission:update-clients')->name('admin.clients.contacts.store');
+        Route::post('/contacts/update/{id}', [App\Http\Controllers\ClientContactController::class, 'update'])->middleware('permission:update-clients')->name('admin.clients.contacts.update');
+        Route::get('/contacts/delete/{id}', [App\Http\Controllers\ClientContactController::class, 'destroy'])->middleware('permission:update-clients')->name('admin.clients.contacts.delete');
+    });
+
+    Route::group(['prefix' => 'documents', 'middleware' => ['permission:manage-documents']], function () {
+        Route::get('/', [App\Http\Controllers\CompanyDocumentController::class, 'index'])->name('admin.documents.index');
+
+        Route::post('/folders/store', [App\Http\Controllers\DocumentFolderController::class, 'store'])->name('admin.documents.folders.store');
+        Route::post('/folders/update/{slug}', [App\Http\Controllers\DocumentFolderController::class, 'update'])->name('admin.documents.folders.update');
+        Route::get('/folders/delete/{slug}', [App\Http\Controllers\DocumentFolderController::class, 'destroy'])->name('admin.documents.folders.delete');
+        Route::get('/folder/{slug}', [App\Http\Controllers\CompanyDocumentController::class, 'folder'])->name('admin.documents.folder');
+        Route::get('/uncategorized', [App\Http\Controllers\CompanyDocumentController::class, 'uncategorized'])->name('admin.documents.uncategorized');
+
+        Route::post('/store', [App\Http\Controllers\CompanyDocumentController::class, 'store'])->name('admin.documents.store');
+        Route::get('/delete/{id}', [App\Http\Controllers\CompanyDocumentController::class, 'destroy'])->name('admin.documents.delete');
+        Route::get('/view/{slug}', [App\Http\Controllers\DownloadController::class, 'viewCompanyDocument'])->name('admin.documents.view');
+        Route::get('/raw/{slug}', [App\Http\Controllers\DownloadController::class, 'rawCompanyDocument'])->name('admin.documents.raw');
+        Route::get('/download/{slug}', [App\Http\Controllers\DownloadController::class, 'downloadCompanyDocument'])->name('admin.documents.download');
+    });
 
 });
 Route::group(['prefix' => 'student','middleware' => ['auth']], function () {
     Route::get('/training-materials', [App\Http\Controllers\TrainingMaterialController::class, 'index'])->name('student.training.materials.index');
-    Route::get('/materials/download/{file}', [App\Http\Controllers\DownloadController::class, 'downloadMaterial'])->name('student.training.materials.download');
+    Route::get('/materials/view/{slug}', [App\Http\Controllers\DownloadController::class, 'viewMaterial'])->name('student.training.materials.view');
+    Route::get('/materials/raw/{slug}', [App\Http\Controllers\DownloadController::class, 'rawMaterial'])->name('student.training.materials.raw');
 
     Route::get('/certificates', [App\Http\Controllers\CertificateController::class, 'index'])->name('student.certificates.index');
-   Route::get('/download/certificates/{file}', [App\Http\Controllers\DownloadController::class, 'downloadCertificate'])->name('student.certificates.download');
+   Route::get('/download/certificates/{slug}', [App\Http\Controllers\DownloadController::class, 'downloadCertificate'])->name('student.certificates.download');
+    Route::get('/view/certificates/{slug}', [App\Http\Controllers\DownloadController::class, 'viewCertificate'])->name('student.certificates.view');
+    Route::get('/raw/certificates/{slug}', [App\Http\Controllers\DownloadController::class, 'rawCertificate'])->name('student.certificates.raw');
+    Route::get('/view/student-materials/{slug}', [App\Http\Controllers\DownloadController::class, 'viewStudentMaterial'])->name('student.student-materials.view');
+    Route::get('/raw/student-materials/{slug}', [App\Http\Controllers\DownloadController::class, 'rawStudentMaterial'])->name('student.student-materials.raw');
 
 });

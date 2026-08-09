@@ -16,32 +16,41 @@ class StudentController extends Controller
     //delete student
     public function destroy($id)
     {
+        $student = RegistrationStudent::find($id);
+        if (!$student) {
+            return redirect()->back()->with('error', 'Student not found. It may have already been deleted.');
+        }
         try {
-            $student = RegistrationStudent::find($id);
             $student->delete();
             return redirect()->back()->with('success', 'Student deleted successfully.');
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             return redirect()->back()->with('error', 'Something went wrong, please try again.');
         }
     }
     //change payment status
     public function changePaymentStatus($id)
     {
+        $student = RegistrationStudent::find($id);
+        if (!$student) {
+            return redirect()->back()->with('error', 'Student not found. It may have already been deleted.');
+        }
         try {
-            $student = RegistrationStudent::find($id);
             $student->is_paid = true;
             $student->status = 'Active';
             $student->save();
             return redirect()->back()->with('success', 'Payment status changed successfully.');
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             return redirect()->back()->with('error', 'Something went wrong, please try again.');
         }
     }
     //reply to student
     public function replyToStudent(Request $request)
     {
+        $student = RegistrationStudent::find($request->student_id);
+        if (!$student) {
+            return redirect()->back()->with('error', 'Student not found. It may have already been deleted.');
+        }
         try {
-            $student = RegistrationStudent::find($request->student_id);
             $student->reply_status = true;
             $student->reply_message = $request->reply_message;
             $student->status = $request->status;

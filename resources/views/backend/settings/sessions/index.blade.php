@@ -3,7 +3,7 @@
 @section('content')
     <?php
     use App\Constants\VariableConstants;
-    $main_url = url()->to('/').'/';
+    $main_url = url()->to('/');
     $ROOT_FOLDER =$main_url.VariableConstants::ROOT_FOLDER;
     ?>
     <div class="row">
@@ -53,6 +53,8 @@
                                         <td>
                                             @if($training_session->status == "Active")
                                                 <span class="badge badge-success rounded">Active</span>
+                                            @elseif($training_session->status == "Completed")
+                                                <span class="badge badge-info rounded">Completed</span>
                                             @else
                                                 <span class="badge badge-danger rounded">{{$training_session->status}}</span>
                                             @endif
@@ -69,8 +71,11 @@
                                                     @if($training_session->status == "Active")
                                                         <a class="dropdown-item close_btn" href="{{route('admin.training.session.change_status', [$training_session->id, 'Inactive'])}}">Close</a>
                                                         <a class="dropdown-item update_btn" href="{{route('admin.training.session.edit', [$training_session->id])}}">Edit</a>
-                                                    @else
+                                                    @elseif($training_session->status == "Inactive")
                                                         <a class="dropdown-item close_btn" href="{{route('admin.training.session.change_status', [$training_session->id, 'Active'])}}">Activate</a>
+                                                    @endif
+                                                    @if($training_session->status != "Completed")
+                                                        <a class="dropdown-item complete_btn" href="{{route('admin.training.session.change_status', [$training_session->id, 'Completed'])}}">Mark Completed</a>
                                                     @endif
                                                     <a class="dropdown-item delete_btn" href="{{route('admin.training.session.delete', $training_session->id)}}">Delete</a>
 
@@ -286,6 +291,25 @@
                 })
             });
 
+            //mark completed btn
+            $(".complete_btn").click(function (e) {
+                e.preventDefault();
+                var url = $(this).attr('href');
+                Swal.fire({
+                    title: 'Mark this session Completed?',
+                    text: "Certificates can be issued to its students once completed.",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, mark completed!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = url;
+                    }
+                })
+            });
+
 
 
 
@@ -297,3 +321,26 @@
 
 @endsection
 
+
+@push('datatables_styles')
+    <link rel="stylesheet" href="{{asset($ROOT_FOLDER.'backend/assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css')}}">
+    <link rel="stylesheet" href="{{asset($ROOT_FOLDER.'backend/assets/vendors/datatables.net-bs4/buttons.bootstrap4.css')}}">
+    <link rel="stylesheet" href="{{asset($ROOT_FOLDER.'backend/assets/vendors/datatables.net-bs4/buttons.dataTables.min.css')}}">
+    <link rel="stylesheet" href="{{asset($ROOT_FOLDER.'backend/assets/vendors/datatables.net-bs4/responsive.bootstrap4.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset($ROOT_FOLDER.'backend/assets/js/select.dataTables.min.css')}}">
+@endpush
+
+@push('datatables_scripts')
+    <script src="{{asset($ROOT_FOLDER.'backend/assets/vendors/datatables.net/jquery.dataTables.js')}}"></script>
+    <script src="{{asset($ROOT_FOLDER.'backend/assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js')}}"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
+    <script src="{{asset($ROOT_FOLDER.'backend/assets/vendors/datatables.net-bs4/buttons.dataTables.min.js')}}"></script>
+    <script src="{{asset($ROOT_FOLDER.'backend/assets/vendors/datatables.net-bs4/buttons.bootstrap4.min.js')}}"></script>
+    <script src="{{asset($ROOT_FOLDER.'backend/assets/vendors/datatables.net-responsive/dataTables.responsive.min.js')}}"></script>
+    <script src="{{asset($ROOT_FOLDER.'backend/assets/vendors/datatables.net-bs4/responsive.dataTables.min.js')}}"></script>
+    <script src="{{asset($ROOT_FOLDER.'backend/assets/vendors/datatables.net-bs4/responsive.bootstrap4.min.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
+@endpush

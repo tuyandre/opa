@@ -58,9 +58,12 @@ class TrainingSessionController extends Controller
     //delete training session
     public function destroy($id)
     {
-        try {
-            $training_session = TrainingSession::find($id);
+        $training_session = TrainingSession::find($id);
+        if (!$training_session) {
+            return redirect()->route('admin.training.session')->with('error', 'Training session not found. It may have already been deleted.');
+        }
 
+        try {
             //check if session has students
             if($training_session->students->count() > 0){
                 return redirect()->back()->with('error', 'Training session can not be deleted.Because it has students.');
@@ -77,6 +80,9 @@ class TrainingSessionController extends Controller
     public function updateStatus($id, $status)
     {
         $training_session = TrainingSession::find($id);
+        if (!$training_session) {
+            return redirect()->route('admin.training.session')->with('error', 'Training session not found. It may have already been deleted.');
+        }
         $training_session->status = $status;
         $training_session->save();
         return redirect()->back()->with('success', 'Training session status updated successfully.');
@@ -85,13 +91,19 @@ class TrainingSessionController extends Controller
     public function getStudentsBySessionId($id)
     {
         $training_session = TrainingSession::find($id);
-        $students = $training_session->students;
+        if (!$training_session) {
+            return redirect()->route('admin.training.session')->with('error', 'Training session not found. It may have already been deleted.');
+        }
+        $students = $training_session->students()->with('materials')->get();
         return view('backend.settings.sessions.session_students', compact('students', 'training_session'));
     }
     //edit training session
     public function edit($id)
     {
         $training_session = TrainingSession::find($id);
+        if (!$training_session) {
+            return redirect()->route('admin.training.session')->with('error', 'Training session not found. It may have already been deleted.');
+        }
         return view('backend.settings.sessions.edit', compact('training_session'));
     }
     //custom update
@@ -108,6 +120,9 @@ class TrainingSessionController extends Controller
             'maximum_students' => 'required'
         ]);
         $training_session = TrainingSession::find($request->id);
+        if (!$training_session) {
+            return redirect()->route('admin.training.session')->with('error', 'Training session not found. It may have already been deleted.');
+        }
         $training_session->session_title = $request->session_title;
         $training_session->price = $request->price;
         $training_session->duration = $request->days.' days';

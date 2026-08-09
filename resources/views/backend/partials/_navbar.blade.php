@@ -14,8 +14,8 @@
         <ul class="navbar-nav navbar-nav-right">
 
           <li class="nav-item nav-profile dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="{{asset(url()->to('/').VariableConstants::ROOT_FOLDER.'backend/assets/images/faces/face28.png')}}" alt="profile"/>
+            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" data-toggle="dropdown" id="profileDropdown">
+              <span class="opa-avatar">{{ strtoupper(substr(Auth::user()->name, 0, 1)) }}</span>
                 <span class="nav-profile-name">{{Auth::user()->name}}</span>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">

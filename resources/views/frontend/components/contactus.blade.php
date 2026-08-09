@@ -29,7 +29,7 @@
                         <p>+250 781 165 413 / +250 785 148 968</p>
                     </div>
                     <div style="width: 100%">
-                     <iframe width="431" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=Kicukiro/Ziniya%20Market,%20KK%20502%20st%20Office%20of%20Professional%20Auditor+(OPA(Office%20of%20Professional%20Auditor))&amp;t=&amp;z=17&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.maps.ie/population/">Population Estimator map</a></iframe>
+                     <iframe width="431" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" loading="lazy" title="OPA location on Google Maps" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=Kicukiro/Ziniya%20Market,%20KK%20502%20st%20Office%20of%20Professional%20Auditor+(OPA(Office%20of%20Professional%20Auditor))&amp;t=&amp;z=17&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
                     </div>
 
    </div>

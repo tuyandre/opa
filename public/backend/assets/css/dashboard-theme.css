@@ -1,0 +1,134 @@
+/*
+ * OPA admin dashboard theme layer.
+ * Loaded after the base "Star Admin" theme CSS — everything here is an
+ * intentional override/addition on top of it, not a replacement.
+ * Brand colors match the public site and generated certificates:
+ * teal #146c77, dark #101820, red accent #e50031.
+ */
+
+:root {
+    --opa-teal: #146c77;
+    --opa-teal-dark: #0c444b;
+    --opa-teal-tint: #e7f5fb;
+    --opa-dark: #101820;
+    --opa-red: #e50031;
+    --opa-grey: #4c4e56;
+}
+
+/* ---------- Cards ---------- */
+.card {
+    border: none;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px rgba(16, 24, 32, 0.08);
+}
+
+.card .card-header {
+    background: transparent;
+    border-bottom: 1px solid #eef1f3;
+    font-weight: 600;
+}
+
+/* ---------- KPI stat cards (dashboard home) ---------- */
+.opa-stat-card {
+    border: none;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px rgba(16, 24, 32, 0.10);
+    color: #fff;
+    overflow: hidden;
+}
+
+.opa-stat-card .card-body {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.opa-stat-card .opa-stat-icon {
+    width: 52px;
+    height: 52px;
+    min-width: 52px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+.opa-stat-card .opa-stat-label {
+    margin: 0 0 4px;
+    font-size: 13px;
+    opacity: 0.9;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.opa-stat-card .opa-stat-value {
+    margin: 0;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+/* ---------- Sidebar ---------- */
+.sidebar .nav-section-label {
+    display: block;
+    padding: 18px 20px 6px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #9aa1a6;
+}
+
+.sidebar .nav .nav-item:first-child .nav-section-label {
+    padding-top: 8px;
+}
+
+.sidebar .nav .nav-item:hover:not(.active) > .nav-link {
+    background: var(--opa-teal-tint);
+    border-radius: 8px;
+}
+
+/* ---------- Topbar ---------- */
+.navbar {
+    box-shadow: 0 2px 10px rgba(16, 24, 32, 0.06);
+}
+
+.nav-item.nav-profile .opa-avatar {
+    margin-right: 10px;
+}
+
+.opa-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--opa-teal);
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 15px;
+    text-transform: uppercase;
+}
+
+/* ---------- Tables & badges ---------- */
+.table thead th {
+    background: #f7f9fa;
+    color: var(--opa-grey);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom-width: 1px !important;
+}
+
+.table-hover tbody tr:hover {
+    background-color: var(--opa-teal-tint);
+}
+
+.badge {
+    border-radius: 20px;
+    font-weight: 600;
+    padding: 5px 10px;
+}
