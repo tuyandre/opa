@@ -35,6 +35,14 @@ Route::post('/registration/store', [App\Http\Controllers\FrontRegistrationContro
 //contact us routes
 Route::post('/contact-us/store', [App\Http\Controllers\ContactUsController::class, 'saveContactUs'])->name('frontend.contact-us.store');
 
+// Public assessment (attendants use a personal access code, no login)
+Route::get('/assessment/take', [App\Http\Controllers\PublicAssessmentController::class, 'take'])->name('assessment.take');
+Route::post('/assessment/save', [App\Http\Controllers\PublicAssessmentController::class, 'save'])->name('assessment.save');
+Route::post('/assessment/submit', [App\Http\Controllers\PublicAssessmentController::class, 'submit'])->name('assessment.submit');
+Route::get('/assessment/result', [App\Http\Controllers\PublicAssessmentController::class, 'result'])->name('assessment.result');
+Route::get('/assessment/{slug?}', [App\Http\Controllers\PublicAssessmentController::class, 'landing'])->name('assessment.landing');
+Route::post('/assessment/{slug?}', [App\Http\Controllers\PublicAssessmentController::class, 'start'])->middleware('throttle:15,1')->name('assessment.start');
+
 //Auth::routes();
 // Login Routes
 Route::get('/login', 'App\Http\Controllers\Auth\LoginController@showLoginForm')->name('login');
@@ -145,6 +153,39 @@ Route::group(['prefix' => 'dashboard','middleware' => ['auth']], function () {
         Route::post('/{slug}/contacts/store', [App\Http\Controllers\ClientContactController::class, 'store'])->middleware('permission:update-clients')->name('admin.clients.contacts.store');
         Route::post('/contacts/update/{id}', [App\Http\Controllers\ClientContactController::class, 'update'])->middleware('permission:update-clients')->name('admin.clients.contacts.update');
         Route::get('/contacts/delete/{id}', [App\Http\Controllers\ClientContactController::class, 'destroy'])->middleware('permission:update-clients')->name('admin.clients.contacts.delete');
+    });
+
+    Route::group(['prefix' => 'assessments', 'middleware' => ['permission:manage-assessments']], function () {
+        $c = App\Http\Controllers\AssessmentController::class;
+        Route::get('/', [$c, 'index'])->name('admin.assessments.index');
+        Route::post('/store', [$c, 'store'])->name('admin.assessments.store');
+        Route::get('/{id}', [$c, 'show'])->whereNumber('id')->name('admin.assessments.show');
+        Route::post('/update/{id}', [$c, 'update'])->name('admin.assessments.update');
+        Route::post('/delete/{id}', [$c, 'destroy'])->name('admin.assessments.delete');
+        Route::get('/{id}/report', [$c, 'reportPdf'])->name('admin.assessments.report');
+        Route::get('/{id}/export', [$c, 'exportCsv'])->name('admin.assessments.export');
+
+        Route::post('/{id}/modules/store', [$c, 'storeModule'])->name('admin.assessments.modules.store');
+        Route::post('/modules/update/{id}', [$c, 'updateModule'])->name('admin.assessments.modules.update');
+        Route::post('/modules/delete/{id}', [$c, 'destroyModule'])->name('admin.assessments.modules.delete');
+
+        Route::post('/modules/{id}/questions/store', [$c, 'storeQuestion'])->name('admin.assessments.questions.store');
+        Route::post('/questions/update/{id}', [$c, 'updateQuestion'])->name('admin.assessments.questions.update');
+        Route::post('/questions/delete/{id}', [$c, 'destroyQuestion'])->name('admin.assessments.questions.delete');
+
+        Route::post('/{id}/attendants/store', [$c, 'storeAttendant'])->name('admin.assessments.attendants.store');
+        Route::post('/{id}/attendants/bulk', [$c, 'bulkAttendants'])->name('admin.assessments.attendants.bulk');
+        $i = App\Http\Controllers\AssessmentInvitationController::class;
+        Route::get('/{id}/attendants/template', [$i, 'template'])->name('admin.assessments.attendants.template');
+        Route::post('/{id}/attendants/import', [$i, 'upload'])->name('admin.assessments.attendants.import');
+        Route::get('/{id}/attendants/import/preview', [$i, 'preview'])->name('admin.assessments.attendants.import.preview');
+        Route::post('/{id}/attendants/import/confirm', [$i, 'confirm'])->name('admin.assessments.attendants.import.confirm');
+        Route::post('/{id}/attendants/send', [$i, 'send'])->name('admin.assessments.attendants.send');
+        Route::post('/attendants/send/{id}', [$i, 'sendOne'])->name('admin.assessments.attendants.send-one');
+        Route::post('/attendants/delete/{id}', [$c, 'destroyAttendant'])->name('admin.assessments.attendants.delete');
+        Route::post('/attendants/reset/{id}', [$c, 'resetAttendant'])->name('admin.assessments.attendants.reset');
+        Route::get('/attendants/{id}', [$c, 'attendantResult'])->name('admin.assessments.attendants.result');
+        Route::get('/attendants/{id}/pdf', [$c, 'attendantPdf'])->name('admin.assessments.attendants.pdf');
     });
 
     Route::group(['prefix' => 'documents', 'middleware' => ['permission:manage-documents']], function () {

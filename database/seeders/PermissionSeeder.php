@@ -32,6 +32,7 @@ class PermissionSeeder extends Seeder
             'manage-galleries',
             'manage-users',
             'manage-documents',
+            'manage-assessments',
 
             'view-clients',
             'create-clients',
