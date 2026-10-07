@@ -40,6 +40,12 @@
                         <span class="menu-title">Training Materials</span>
                     </a>
                 </li>
+                <li class="nav-item {{ request()->routeIs('admin.assessments.*') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{route('admin.assessments.index')}}">
+                        <i class="mdi mdi-clipboard-check-outline menu-icon"></i>
+                        <span class="menu-title">Assessments</span>
+                    </a>
+                </li>
 
           <span class="nav-section-label">Content</span>
             <li class="nav-item {{ request()->routeIs('admin.contact.us*') ? 'active' : '' }}">
@@ -106,7 +112,7 @@
                         </a>
                     </li>
 
-                    @if(auth()->user()->can('manage-services') || auth()->user()->can('manage-sessions') || auth()->user()->can('manage-students') || auth()->user()->can('manage-certificates') || auth()->user()->can('manage-materials'))
+                    @if(auth()->user()->can('manage-services') || auth()->user()->can('manage-sessions') || auth()->user()->can('manage-students') || auth()->user()->can('manage-certificates') || auth()->user()->can('manage-materials') || auth()->user()->can('manage-assessments'))
                         <span class="nav-section-label">Training</span>
                         @can('manage-services')
                             <li class="nav-item {{ request()->routeIs('admin.service.*') ? 'active' : '' }}">
@@ -145,6 +151,14 @@
                                 <a class="nav-link" href="{{route('admin.training.materials.index')}}">
                                     <i class="mdi mdi-folder-multiple menu-icon"></i>
                                     <span class="menu-title">Training Materials</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('manage-assessments')
+                            <li class="nav-item {{ request()->routeIs('admin.assessments.*') ? 'active' : '' }}">
+                                <a class="nav-link" href="{{route('admin.assessments.index')}}">
+                                    <i class="mdi mdi-clipboard-check-outline menu-icon"></i>
+                                    <span class="menu-title">Assessments</span>
                                 </a>
                             </li>
                         @endcan

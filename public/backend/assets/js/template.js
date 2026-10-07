@@ -36,10 +36,16 @@
     }
 
     var current = location.pathname.split("/").slice(-1)[0].replace(/^\/|\/$/g, '');
-    $('.nav li a', sidebar).each(function() {
-      var $this = $(this);
-      addActiveClass($this);
-    })
+
+    // The sidebar's active item is rendered server-side (request()->routeIs(...) in
+    // backend/partials/_sidebar.blade.php). The theme's URL-substring guess below marked
+    // EVERY item active whenever the last URL segment appeared in every href
+    // (e.g. "/assessments/1" matches "127.0.0.1" in all absolute links), turning the whole
+    // menu red. Left disabled for the sidebar on purpose.
+    // $('.nav li a', sidebar).each(function() {
+    //   var $this = $(this);
+    //   addActiveClass($this);
+    // })
 
     $('.horizontal-menu .nav li a').each(function() {
       var $this = $(this);
