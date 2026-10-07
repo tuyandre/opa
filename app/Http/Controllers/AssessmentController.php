@@ -8,6 +8,7 @@ use App\Models\AssessmentModule;
 use App\Models\AssessmentQuestion;
 use App\Models\Client;
 use App\Models\TrainingSession;
+use App\Support\AssessmentCertificate;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -207,6 +208,45 @@ class AssessmentController extends Controller
             ->download($this->fileName($attendant->assessment->title . ' ' . $attendant->name, 'pdf'));
     }
 
+    // Certificate of completion for one attendant who passed.
+    public function certificate($id)
+    {
+        $attendant = AssessmentAttendant::with('assessment')->findOrFail($id);
+        if (!AssessmentCertificate::canIssue($attendant)) {
+            return redirect()->back()->with('error', 'A certificate can only be issued to an attendant who has passed.');
+        }
+
+        return AssessmentCertificate::make($attendant)->download(AssessmentCertificate::fileName($attendant));
+    }
+
+    // One ZIP with a certificate for every attendant who passed.
+    public function certificatesZip($id)
+    {
+        $assessment = Assessment::findOrFail($id);
+        $passed = $assessment->attendants()->where('status', 'Submitted')->where('passed', true)->orderBy('name')->get();
+        if ($passed->isEmpty()) {
+            return redirect()->back()->with('tab', 'attendants')->with('error', 'No one has passed yet, so there are no certificates to generate.');
+        }
+
+        set_time_limit(0);
+        $zipPath = tempnam(sys_get_temp_dir(), 'certs');
+        $zip = new \ZipArchive();
+        $zip->open($zipPath, \ZipArchive::OVERWRITE);
+        $used = [];
+        foreach ($passed as $attendant) {
+            $attendant->setRelation('assessment', $assessment);
+            $name = AssessmentCertificate::fileName($attendant);
+            if (isset($used[$name])) { // two people with the same name
+                $name = str_replace('.pdf', ' ' . $attendant->id . '.pdf', $name);
+            }
+            $used[$name] = true;
+            $zip->addFromString($name, AssessmentCertificate::make($attendant)->output());
+        }
+        $zip->close();
+
+        return response()->download($zipPath, $this->fileName($assessment->title . ' Certificates', 'zip'))->deleteFileAfterSend(true);
+    }
+
     public function exportCsv($id)
     {
         $assessment = Assessment::with(['modules', 'attendants' => fn($q) => $q->orderBy('name')])->findOrFail($id);
@@ -293,6 +333,9 @@ class AssessmentController extends Controller
             'marks_per_question' => 'required|numeric|min:0.01|max:1000',
             'suggested_minutes' => 'required|integer|min:1|max:1000',
             'status' => 'required|in:Draft,Active,Closed',
+            'certificate_title' => 'nullable|string|max:80',
+            'certificate_text' => 'nullable|string|max:120',
+            'certificate_subject' => 'nullable|string|max:150',
         ]);
     }
 

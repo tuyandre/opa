@@ -26,6 +26,9 @@
                         <div class="mt-2">
                             <button class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#settingsModal">Settings</button>
                             <a href="{{ route('admin.assessments.export', $assessment->id) }}" class="btn btn-outline-primary btn-sm">Export CSV</a>
+                            @if($stats['passed'] > 0)
+                                <a href="{{ route('admin.assessments.certificates', $assessment->id) }}" class="btn btn-success btn-sm">Certificates ({{ $stats['passed'] }}) ZIP</a>
+                            @endif
                             <a href="{{ route('admin.assessments.report', $assessment->id) }}" class="btn btn-primary btn-sm">Download PDF report</a>
                         </div>
                     </div>
@@ -137,6 +140,9 @@
                                                 @if($a->isSubmitted())
                                                     <a href="{{ route('admin.assessments.attendants.result', $a->id) }}" class="btn btn-primary btn-sm">View</a>
                                                     <a href="{{ route('admin.assessments.attendants.pdf', $a->id) }}" class="btn btn-outline-primary btn-sm">PDF</a>
+                                                    @if($a->passed)
+                                                        <a href="{{ route('admin.assessments.attendants.certificate', $a->id) }}" class="btn btn-success btn-sm">Certificate</a>
+                                                    @endif
                                                 @endif
                                                 @if($a->email && !$a->isSubmitted())
                                                     <button class="btn btn-outline-success btn-sm js-post" data-url="{{ route('admin.assessments.attendants.send-one', $a->id) }}"

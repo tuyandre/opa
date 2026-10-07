@@ -47,6 +47,9 @@
                 Submitted {{ $attendant->submitted_at->format('d M Y, H:i') }}. Your final submission is saved and cannot be changed.
                 Your trainer will discuss next steps with you.
             </p>
+            @if($passed)
+                <a href="{{ route('assessment.certificate') }}" class="btn noprint" style="text-align:center;text-decoration:none">Download your certificate</a>
+            @endif
             <button type="button" class="btn ghost noprint" onclick="window.print()">Print or save this result</button>
         </div>
     </div>

@@ -39,6 +39,7 @@ Route::post('/contact-us/store', [App\Http\Controllers\ContactUsController::clas
 Route::get('/assessment/take', [App\Http\Controllers\PublicAssessmentController::class, 'take'])->name('assessment.take');
 Route::post('/assessment/save', [App\Http\Controllers\PublicAssessmentController::class, 'save'])->name('assessment.save');
 Route::post('/assessment/submit', [App\Http\Controllers\PublicAssessmentController::class, 'submit'])->name('assessment.submit');
+Route::get('/assessment/certificate', [App\Http\Controllers\PublicAssessmentController::class, 'certificate'])->name('assessment.certificate');
 Route::get('/assessment/result', [App\Http\Controllers\PublicAssessmentController::class, 'result'])->name('assessment.result');
 Route::get('/assessment/{slug?}', [App\Http\Controllers\PublicAssessmentController::class, 'landing'])->name('assessment.landing');
 Route::post('/assessment/{slug?}', [App\Http\Controllers\PublicAssessmentController::class, 'start'])->middleware('throttle:15,1')->name('assessment.start');
@@ -186,6 +187,8 @@ Route::group(['prefix' => 'dashboard','middleware' => ['auth']], function () {
         Route::post('/attendants/reset/{id}', [$c, 'resetAttendant'])->name('admin.assessments.attendants.reset');
         Route::get('/attendants/{id}', [$c, 'attendantResult'])->name('admin.assessments.attendants.result');
         Route::get('/attendants/{id}/pdf', [$c, 'attendantPdf'])->name('admin.assessments.attendants.pdf');
+        Route::get('/attendants/{id}/certificate', [$c, 'certificate'])->name('admin.assessments.attendants.certificate');
+        Route::get('/{id}/certificates', [$c, 'certificatesZip'])->name('admin.assessments.certificates');
     });
 
     Route::group(['prefix' => 'documents', 'middleware' => ['permission:manage-documents']], function () {

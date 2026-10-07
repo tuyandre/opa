@@ -56,4 +56,22 @@
         </select>
     </div>
 </div>
+<div class="form-group">
+    <label>Certificate title</label>
+    <input type="text" name="certificate_title" class="form-control" maxlength="80"
+           value="{{ $v('certificate_title') }}" placeholder="Certificate of Completion">
+    <small class="text-muted">Printed at the top of the certificate issued to attendants who pass, e.g. "Certificate of Achievement". Leave empty for "Certificate of Completion".</small>
+</div>
+<div class="row">
+    <div class="col-md-6 form-group">
+        <label>Certificate wording (under the name)</label>
+        <input type="text" name="certificate_text" class="form-control" maxlength="120"
+               value="{{ $v('certificate_text') }}" placeholder="for passing the final assessment">
+    </div>
+    <div class="col-md-6 form-group">
+        <label>Certificate subject (bold line)</label>
+        <input type="text" name="certificate_subject" class="form-control" maxlength="150"
+               value="{{ $v('certificate_subject') }}" placeholder="Defaults to the assessment title">
+    </div>
+</div>
 <small class="text-muted">Only <strong>Active</strong> assessments accept attendants. Individual questions can override the default marks.</small>

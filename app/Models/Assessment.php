@@ -14,8 +14,29 @@ class Assessment extends Model
 
     protected $fillable = [
         'title', 'version', 'description', 'client_id', 'training_session_id',
-        'pass_mark', 'marks_per_question', 'suggested_minutes', 'status', 'created_by',
+        'pass_mark', 'marks_per_question', 'suggested_minutes', 'status', 'certificate_title', 'certificate_text', 'certificate_subject', 'created_by',
     ];
+
+    public const DEFAULT_CERTIFICATE_TEXT = 'for passing the final assessment';
+
+    // Line printed under the attendant's name.
+    public function certificateText(): string
+    {
+        return trim((string) $this->certificate_text) !== '' ? trim($this->certificate_text) : self::DEFAULT_CERTIFICATE_TEXT;
+    }
+
+    // Bold line printed under that: defaults to the assessment title.
+    public function certificateSubject(): string
+    {
+        return trim((string) $this->certificate_subject) !== '' ? trim($this->certificate_subject) : $this->title;
+    }
+
+    public const DEFAULT_CERTIFICATE_TITLE = 'Certificate of Completion';
+
+    public function certificateTitle(): string
+    {
+        return trim((string) $this->certificate_title) !== '' ? trim($this->certificate_title) : self::DEFAULT_CERTIFICATE_TITLE;
+    }
 
     protected static function booted()
     {
