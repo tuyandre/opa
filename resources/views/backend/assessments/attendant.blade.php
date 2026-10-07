@@ -25,7 +25,12 @@
                             @endif
                         </div>
                         @if($attendant->isSubmitted())
-                            <a href="{{ route('admin.assessments.attendants.pdf', $attendant->id) }}" class="btn btn-primary btn-sm mt-2">Download PDF result</a>
+                            <div class="mt-2">
+                                <a href="{{ route('admin.assessments.attendants.pdf', $attendant->id) }}" class="btn btn-primary btn-sm">Download PDF result</a>
+                                @if($attendant->passed)
+                                    <a href="{{ route('admin.assessments.attendants.certificate', $attendant->id) }}" class="btn btn-success btn-sm">Download certificate</a>
+                                @endif
+                            </div>
                         @endif
                     </div>
                 </div>

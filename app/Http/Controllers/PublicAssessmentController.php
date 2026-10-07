@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Assessment;
 use App\Models\AssessmentAttendant;
+use App\Support\AssessmentCertificate;
 use Illuminate\Http\Request;
 
 class PublicAssessmentController extends Controller
@@ -123,6 +124,17 @@ class PublicAssessmentController extends Controller
         $assessment = $attendant->assessment;
 
         return view('frontend.assessment.result', compact('attendant', 'assessment'));
+    }
+
+    // Attendants download their own certificate once they have passed.
+    public function certificate(Request $request)
+    {
+        $attendant = $this->currentAttendant($request);
+        if (!$attendant || !AssessmentCertificate::canIssue($attendant)) {
+            return redirect()->route($attendant ? 'assessment.result' : 'assessment.landing');
+        }
+
+        return AssessmentCertificate::make($attendant)->download(AssessmentCertificate::fileName($attendant));
     }
 
     private function currentAttendant(Request $request): ?AssessmentAttendant
