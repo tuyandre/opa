@@ -146,7 +146,7 @@
                                                 @endif
                                                 @if($a->email && !$a->isSubmitted())
                                                     <button class="btn btn-outline-success btn-sm js-post" data-url="{{ route('admin.assessments.attendants.send-one', $a->id) }}"
-                                                            data-title="{{ $a->invited_at ? 'Send the invitation again?' : 'Send invitation?' }}" data-text="Email the link and access code to {{ $a->email }}.">Email</button>
+                                                            data-title="{{ $a->invited_at ? 'Send the invitation again?' : 'Send invitation?' }}" data-text="Email the link and access code to {{ $a->email }}">Email</button>
                                                 @endif
                                                 @if($a->status !== 'Not started')
                                                     <button class="btn btn-outline-warning btn-sm js-post" data-url="{{ route('admin.assessments.attendants.reset', $a->id) }}"

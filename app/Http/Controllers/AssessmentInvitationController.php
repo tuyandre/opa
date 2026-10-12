@@ -96,7 +96,7 @@ class AssessmentInvitationController extends Controller
         $message = $created->count() . ' attendant(s) added with personal access codes.';
         if ($request->boolean('send_emails') && $created->isNotEmpty()) {
             [$sent, $failed] = $this->sendTo($created);
-            $message .= " Invitation emails sent: $sent" . ($failed ? ", failed: $failed (use Send invitations to retry)" : '') . '.';
+            $message .= " Invitation emails sent: $sent" . ($failed ? ", failed: $failed ({$this->lastError}; use Send invitations to retry)" : '') . '.';
             if (!$assessment->isOpen()) {
                 $message .= ' Note: the assessment is ' . $assessment->status . ', so the link will not let them start until you set it to Active.';
             }
@@ -123,7 +123,7 @@ class AssessmentInvitationController extends Controller
         }
 
         [$sent, $failed] = $this->sendTo($attendants);
-        $message = "Invitation emails sent: $sent" . ($failed ? ", failed: $failed" : '') . '.';
+        $message = "Invitation emails sent: $sent" . ($failed ? ", failed: $failed (reason: {$this->lastError})" : '') . '.';
         if (!$assessment->isOpen()) {
             $message .= ' Note: the assessment is ' . $assessment->status . ', so attendants cannot start until you set it to Active.';
         }
@@ -142,7 +142,7 @@ class AssessmentInvitationController extends Controller
 
         return redirect()->back()->with('tab', 'attendants')->with(
             $sent ? 'success' : 'error',
-            $sent ? "Invitation sent to {$attendant->email}." : "Could not send to {$attendant->email}. Check the mail settings and try again."
+            $sent ? "Invitation sent to {$attendant->email}." : "Could not send to {$attendant->email}: " . ($this->lastError ?? 'unknown error') . '.'
         );
     }
 
@@ -162,10 +162,29 @@ class AssessmentInvitationController extends Controller
             } catch (\Throwable $e) {
                 Log::warning('Assessment invitation failed for attendant ' . $attendant->id . ': ' . $e->getMessage());
                 $failed++;
+                $this->lastError = $this->friendlyMailError($e);
             }
         }
 
         return [$sent, $failed];
+    }
+
+    private ?string $lastError = null;
+
+    private function friendlyMailError(\Throwable $e): string
+    {
+        $m = $e->getMessage();
+        if (stripos($m, 'Failed to authenticate') !== false) {
+            return 'the mail server rejected the login (check MAIL_USERNAME and MAIL_PASSWORD)';
+        }
+        if (stripos($m, 'Connection could not be established') !== false || stripos($m, 'Connection timed out') !== false) {
+            return 'could not connect to the mail server (check MAIL_HOST, MAIL_PORT and MAIL_ENCRYPTION)';
+        }
+        if (stripos($m, 'does not comply with RFC') !== false || stripos($m, 'Email') !== false && stripos($m, 'invalid') !== false) {
+            return 'the email address is not valid';
+        }
+
+        return \Illuminate\Support\Str::limit(trim(preg_replace('/\s+/', ' ', $m)), 160);
     }
 
     // Turns sheet rows into [name, email, company, problem|null]. Finds columns by header, else uses A/B/C.
